@@ -6,7 +6,9 @@ import controlResiduosPeligrosos.FabricaN;
 import controlResiduosPeligrosos.INegocio;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import validores.Validadores;
 
 /**
  *
@@ -16,13 +18,13 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
 
     // Representa si el formulario ya fue cargado una vez.
     private boolean estaActivado;
-
+    private Validadores validadores = new Validadores();
     private List<Quimico> listaQuimicosDisponibles;
     private List<Quimico> listaQuimicosRegistrados;
     private List<Quimico> listaQuimicosResiduo;
-//    IResiduosDAO residuosDAO;
-//    IQuimicosDAO quimicosDAO;
+
     private INegocio negocio = FabricaN.fabricaN();
+
 
     /*
     Crea el objeto formulario sin cargar nada
@@ -36,10 +38,6 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
      */
     public void cargarContenido() {
         initComponents();
-
-//        residuosDAO = new ResiduosDAO(new ConexionBD());
-//        quimicosDAO = new QuimicosDAO(new ConexionBD());
-
         iniciarTablasResiduos();
 
         this.llenarTablaQuimicoDisponible();
@@ -53,9 +51,9 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
     }
 
     private void llenarTablaQuimicoDisponible() {
-        listaQuimicosRegistrados=negocio.consultarTodosQuimicos();
+        listaQuimicosRegistrados = negocio.consultarTodosQuimicos();
         listaQuimicosRegistrados.removeAll(listaQuimicosResiduo);
-        listaQuimicosDisponibles=listaQuimicosRegistrados;
+        listaQuimicosDisponibles = listaQuimicosRegistrados;
 
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblQuimicoDisponible.getModel();
         modeloTabla.setRowCount(0);
@@ -68,15 +66,21 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
 
     private void agregarQuimicoResiduo() {
 
-        listaQuimicosResiduo.add(new Quimico((String)tblQuimicoDisponible.getValueAt(tblQuimicoDisponible.getSelectedRow(), 0)));
+        listaQuimicosResiduo.add(new Quimico((String) tblQuimicoDisponible.getValueAt(tblQuimicoDisponible.getSelectedRow(), 0)));
 
     }
-    
-    private void eliminarQuimicoResiduo(){
-        listaQuimicosResiduo.remove(new Quimico((String)tblQuimicoResiduo.getValueAt(tblQuimicoResiduo.getSelectedRow(), 0)));
+
+    private void eliminarQuimicoResiduo() {
+
+        if (!listaQuimicosResiduo.isEmpty()) {
+            listaQuimicosResiduo.remove(new Quimico((String) tblQuimicoResiduo.getValueAt(tblQuimicoResiduo.getSelectedRow(), 0)));
+        } else {
+            JOptionPane.showMessageDialog(this, "La lista esta vacia", "Información", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
-    
-    private void llenarTablaQuimicoResiduo(){
+
+    private void llenarTablaQuimicoResiduo() {
         DefaultTableModel modeloTabla2 = (DefaultTableModel) this.tblQuimicoResiduo.getModel();
         modeloTabla2.setRowCount(0);
         listaQuimicosResiduo.forEach(quimicosResiduo -> {
@@ -85,42 +89,45 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
             modeloTabla2.addRow(fila);
         });
     }
-    
-    private void guardarResiduo(){
+
+    private void guardarResiduo() {
 
         agregarResiduo();
-        limpiarPanelResiduo();
-    }   
-    
-    private void iniciarTablasResiduos(){
-        listaQuimicosRegistrados= new ArrayList<>();
-        listaQuimicosResiduo= new ArrayList<>();
+
+    }
+
+    private void iniciarTablasResiduos() {
+        listaQuimicosRegistrados = new ArrayList<>();
+        listaQuimicosResiduo = new ArrayList<>();
         listaQuimicosDisponibles = new ArrayList<>();
     }
-    
-    private void agregarResiduo(){
 
-        int codigo = Integer.parseInt(this.txtCodigoResiduo.getText());
-        String nombre = this.txtNombreResiduo.getText();
-        List<Quimico> quimicos= listaQuimicosResiduo;
-        Residuo residuo = new Residuo(codigo, nombre, quimicos);
-        negocio.agregarResiduo(residuo);
-        //residuosDAO.agregar(residuo);
-////        String nombreQuimico = this.txtNombreQuimico.getText();
-////        Quimico quimico = new Quimico(nombreQuimico);
-////        boolean seAgrego = quimicosDAO.agregar(quimico);
-////        if (seAgrego) {
-////            JOptionPane.showMessageDialog(this, "Se agrego el quimico", "información", JOptionPane.INFORMATION_MESSAGE);
-////            this.limpiarQumico();
-////        } else {
-////            JOptionPane.showMessageDialog(this, "No fue posible agregar el quimico", "Error", JOptionPane.ERROR_MESSAGE);
+    private void agregarResiduo() {
 
+        if (!validarCampoCodigo()) {
+            JOptionPane.showMessageDialog(this, "El codigo tiene que tener 6 digitos enteros", "Información", JOptionPane.ERROR_MESSAGE);
 
+        } else {
+            if (validarCamposLlenos()) {
+                int codigo = Integer.parseInt(this.txtCodigoResiduo.getText());
+                String nombre = this.txtNombreResiduo.getText();
+                List<Quimico> quimicos = listaQuimicosResiduo;
+                Residuo residuo = new Residuo(codigo, nombre, quimicos);
+                boolean seAgrego = negocio.agregarResiduo(residuo);
+                if (seAgrego) {
+                    JOptionPane.showMessageDialog(this, "Se agrego el quimico", "información", JOptionPane.INFORMATION_MESSAGE);
+                    limpiarPanelResiduo();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No fue posible agregar el quimico", "Error", JOptionPane.ERROR_MESSAGE);
+                }
 
-    
+            } else {
+                JOptionPane.showMessageDialog(this, "Rellene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
+            }
+        }
 
     }
-   
+
     private void limpiarPanelResiduo() {
 
         iniciarTablasResiduos();
@@ -129,11 +136,33 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
         txtCodigoResiduo.setText("");
         txtNombreResiduo.setText("");
     }
-    
-    public void recargarRegistroResiduo(){
+
+    public void recargarRegistroResiduo() {
         llenarTablaQuimicoDisponible();
     }
-    
+
+    private boolean validarCamposLlenos() {
+        if (txtCodigoResiduo.getText().isEmpty()) {
+            return false;
+        }
+        if (txtNombreResiduo.getText().isEmpty()) {
+            return false;
+        }
+        if (listaQuimicosResiduo.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validarCampoCodigo() {
+        String codigo = txtCodigoResiduo.getText();
+        if (validadores.validaEntero(codigo)) {
+            if(codigo.length()==6)
+            return true;
+        }
+        return false;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -304,9 +333,15 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
 
     private void btnAgregarRegistroResiduoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarRegistroResiduoActionPerformed
         // TODO add your handling code here:
-        agregarQuimicoResiduo();
-        llenarTablaQuimicoResiduo();
-        llenarTablaQuimicoDisponible();
+
+        if (tblQuimicoDisponible.getSelectedRow() >= 0) {
+            agregarQuimicoResiduo();
+            llenarTablaQuimicoResiduo();
+            llenarTablaQuimicoDisponible();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un quimico", "Información", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnAgregarRegistroResiduoActionPerformed
 
     private void txtNombreResiduoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreResiduoActionPerformed
@@ -327,7 +362,7 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
     private void btnGuardarResiduoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarResiduoActionPerformed
         // TODO add your handling code here:
         guardarResiduo();
-        
+
     }//GEN-LAST:event_btnGuardarResiduoActionPerformed
 
 
@@ -345,6 +380,5 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
     private javax.swing.JTextField txtCodigoResiduo;
     private javax.swing.JTextField txtNombreResiduo;
     // End of variables declaration//GEN-END:variables
-
 
 }

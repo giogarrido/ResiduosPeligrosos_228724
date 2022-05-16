@@ -15,12 +15,6 @@
             <file>file:/C:/Users/giova/Documents/github/residuosPeligrosos/ResiduosPeligrososPersistencia/src/daos/ResiduosDAO.java</file>
             <file>file:/C:/Users/giova/Documents/github/residuosPeligrosos/ResiduosPeligrososPersistencia/src/daos/QuimicosDAO.java</file>
         </group>
-        <group name="Disenio de Software Final">
-            <file>file:/C:/Users/giova/Documents/github/BDyDS_Final/ResiduosPeligrososDatos/src/daos/FDatos.java</file>
-            <file>file:/C:/Users/giova/Documents/github/BDyDS_Final/ResiduosPeligrososDatos/src/daos/IDatos.java</file>
-            <file>file:/C:/Users/giova/Documents/github/BDyDS_Final/ResiduosPeligrososDatos/src/daos/DAOsBase.java</file>
-            <file>file:/C:/Users/giova/Documents/github/BDyDS_Final/ResiduosPeligrososDatos/src/daos/FabricaD.java</file>
-            <file>file:/C:/Users/giova/Documents/github/BDyDS_Final/ResiduosPeligrososDatos/src/daos/QuimicosDAO.java</file>
-        </group>
+        <group name="Disenio de Software Final"/>
     </open-files>
 </project-private>
