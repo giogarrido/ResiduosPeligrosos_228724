@@ -8,7 +8,6 @@ import controlResiduosPeligrosos.FabricaN;
 import controlResiduosPeligrosos.INegocio;
 import objetosNegocio.Quimico;
 
-
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 
@@ -18,9 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class AdministracionForm extends javax.swing.JFrame {
 
-    
     private INegocio negocio = FabricaN.fabricaN();
-    
+
     public AdministracionForm() {
         initComponents();
 
@@ -76,16 +74,16 @@ public class AdministracionForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        btnRegProductor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnRegProductor.setText("Productor");
+        btnRegProductor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnRegProductor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegProductorActionPerformed(evt);
             }
         });
 
-        btnRegTransporte.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnRegTransporte.setText("Transporte");
+        btnRegTransporte.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnRegTransporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegTransporteActionPerformed(evt);
@@ -93,26 +91,26 @@ public class AdministracionForm extends javax.swing.JFrame {
         });
 
         btnRegQuimico.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnRegQuimico.setText("Quimico");
+        btnRegQuimico.setText("Químico");
         btnRegQuimico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegQuimicoActionPerformed(evt);
             }
         });
 
-        lblRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblRegistrar.setText("Registrar:");
+        lblRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
 
-        btnRegAdministrador.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnRegAdministrador.setText("Administrador");
+        btnRegAdministrador.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnRegAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegAdministradorActionPerformed(evt);
             }
         });
 
-        btnSaliRegistro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSaliRegistro.setText("Salir");
+        btnSaliRegistro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSaliRegistro.setPreferredSize(new java.awt.Dimension(81, 26));
         btnSaliRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,16 +164,16 @@ public class AdministracionForm extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitulo.setText("Registro de Quimico");
 
-        btnAgregarQuimico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAgregarQuimico.setText("Agregar");
+        btnAgregarQuimico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAgregarQuimico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarQuimicoActionPerformed(evt);
             }
         });
 
-        btnSalirQuimico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSalirQuimico.setText("Salir");
+        btnSalirQuimico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSalirQuimico.setPreferredSize(new java.awt.Dimension(81, 26));
         btnSalirQuimico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,8 +181,8 @@ public class AdministracionForm extends javax.swing.JFrame {
             }
         });
 
-        lblNombreQuimico.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblNombreQuimico.setText("Nombre:");
+        lblNombreQuimico.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         txtNombreQuimico.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -227,11 +225,11 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         getContentPane().add(pnlRegQuimico, "regQuimico");
 
-        lblRegistrarProductor.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblRegistrarProductor.setText("Registrar Productor");
+        lblRegistrarProductor.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
 
-        lblNombreRegProductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblNombreRegProductor.setText("Nombre");
+        lblNombreRegProductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         btnNombreRegProductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnNombreRegProductor.addActionListener(new java.awt.event.ActionListener() {
@@ -240,8 +238,8 @@ public class AdministracionForm extends javax.swing.JFrame {
             }
         });
 
-        lblContraseniaRegProductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblContraseniaRegProductor.setText("Contraseña");
+        lblContraseniaRegProductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         btnContraseniaRegProductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnContraseniaRegProductor.addActionListener(new java.awt.event.ActionListener() {
@@ -250,16 +248,16 @@ public class AdministracionForm extends javax.swing.JFrame {
             }
         });
 
-        btnAgregarProductor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAgregarProductor.setText("Agregar");
+        btnAgregarProductor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAgregarProductor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarProductorActionPerformed(evt);
             }
         });
 
-        btnSalirProductor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSalirProductor.setText("Salir");
+        btnSalirProductor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSalirProductor.setPreferredSize(new java.awt.Dimension(81, 26));
         btnSalirProductor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,14 +312,14 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         getContentPane().add(pnlRegproductor, "regProductor");
 
-        lblRegistrarTransportista.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblRegistrarTransportista.setText("Registro de Trasportista");
+        lblRegistrarTransportista.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
 
-        lblNombreRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombreRegTransportista.setText("Nombre:");
+        lblNombreRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        lblContraseniaRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblContraseniaRegTransportista.setText("Contraseña");
+        lblContraseniaRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtNombreRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombreRegTransportista.addActionListener(new java.awt.event.ActionListener() {
@@ -332,11 +330,11 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         txtContraseniaRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        btnAgregarRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAgregarRegTransportista.setText("Agregar");
+        btnAgregarRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        btnSalirRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSalirRegTransportista.setText("Salir");
+        btnSalirRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSalirRegTransportista.setPreferredSize(new java.awt.Dimension(81, 26));
         btnSalirRegTransportista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -388,14 +386,14 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         getContentPane().add(pnlRegTransporte, "regTransporte");
 
-        lblRegistrarAdministrador.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         lblRegistrarAdministrador.setText("Registro de Administrador");
+        lblRegistrarAdministrador.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
 
-        lblNombreRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombreRegAdministrador.setText("Nombre:");
+        lblNombreRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        lblContraseniaRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblContraseniaRegAdministrador.setText("Contraseña");
+        lblContraseniaRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtNombreRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombreRegAdministrador.addActionListener(new java.awt.event.ActionListener() {
@@ -406,11 +404,11 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         txtContraseniaRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        btnAgregarRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAgregarRegAdministrador.setText("Agregar");
+        btnAgregarRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        btnSalirRegvAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSalirRegvAdministrador.setText("Salir");
+        btnSalirRegvAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSalirRegvAdministrador.setPreferredSize(new java.awt.Dimension(81, 26));
 
         javax.swing.GroupLayout pnlRegAdministradorLayout = new javax.swing.GroupLayout(pnlRegAdministrador);
@@ -476,7 +474,7 @@ public class AdministracionForm extends javax.swing.JFrame {
     private void btnAgregarQuimicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarQuimicoActionPerformed
         // TODO add your handling code here:
         agregarQuimico();
-        
+
     }//GEN-LAST:event_btnAgregarQuimicoActionPerformed
 
     private void btnRegQuimicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegQuimicoActionPerformed
@@ -543,18 +541,37 @@ public class AdministracionForm extends javax.swing.JFrame {
     }
 
     private void agregarQuimico() {
-        String nombreQuimico = this.txtNombreQuimico.getText();
-        Quimico quimico = new Quimico(nombreQuimico);
-        boolean seAgrego =negocio.agregarQuimico(quimico);
-        if (seAgrego) {
-            JOptionPane.showMessageDialog(this, "Se agrego el quimico", "información", JOptionPane.INFORMATION_MESSAGE);
-            this.limpiarQumico();
+        String nombreQuimico = this.txtNombreQuimico.getText().toUpperCase();
+        if (!campoVacio(nombreQuimico)) {
+
+            if (negocio.consultarExisteNombreQuimico(nombreQuimico)) {
+                JOptionPane.showMessageDialog(this, "El quimico ya existe", "error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Quimico quimico = new Quimico(nombreQuimico);
+                boolean seAgrego = negocio.agregarQuimico(quimico);
+                if (seAgrego) {
+                    JOptionPane.showMessageDialog(this, "Se agrego el químico", "información", JOptionPane.INFORMATION_MESSAGE);
+                    this.limpiarQumico();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No fue posible agregar el químico", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
         } else {
-            JOptionPane.showMessageDialog(this, "No fue posible agregar el quimico", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "información", JOptionPane.INFORMATION_MESSAGE);
         }
+
     }
-    
-    
+
+    private boolean campoVacio(String campo) {
+        int tamañoCampo = campo.length();
+        if (tamañoCampo <= 0) {
+            return true;
+        }
+        return false;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProductor;
     private javax.swing.JButton btnAgregarQuimico;
@@ -594,6 +611,5 @@ public class AdministracionForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombreRegAdministrador;
     private javax.swing.JTextField txtNombreRegTransportista;
     // End of variables declaration//GEN-END:variables
-
 
 }

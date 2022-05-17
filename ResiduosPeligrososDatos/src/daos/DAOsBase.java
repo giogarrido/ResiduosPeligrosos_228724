@@ -15,4 +15,5 @@ public abstract class DAOsBase <T>{
 
     protected abstract boolean agregar (T entidad);
     protected abstract List<T> consultarTodos();
+    protected abstract boolean consultarExisteNombre(String nombre);
 }

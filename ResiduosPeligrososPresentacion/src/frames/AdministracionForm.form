@@ -86,10 +86,10 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnRegProductor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Productor"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Productor"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegProductorActionPerformed"/>
@@ -97,10 +97,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnRegTransporte">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Transporte"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Transporte"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegTransporteActionPerformed"/>
@@ -108,10 +108,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnRegQuimico">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Quimico"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Qu&#xed;mico"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegQuimicoActionPerformed"/>
@@ -119,18 +119,18 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblRegistrar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Registrar:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="36" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Registrar:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnRegAdministrador">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Administrador"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Administrador"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegAdministradorActionPerformed"/>
@@ -138,10 +138,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSaliRegistro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[81, 26]"/>
             </Property>
@@ -208,18 +208,18 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblTitulo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Registro de Quimico"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="36" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Registro de Quimico"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnAgregarQuimico">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Agregar"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarQuimicoActionPerformed"/>
@@ -227,10 +227,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSalirQuimico">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[81, 26]"/>
             </Property>
@@ -241,10 +241,10 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblNombreQuimico">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombreQuimico">
@@ -324,18 +324,18 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblRegistrarProductor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Registrar Productor"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="36" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Registrar Productor"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNombreRegProductor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="btnNombreRegProductor">
@@ -350,10 +350,10 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblContraseniaRegProductor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="btnContraseniaRegProductor">
@@ -368,10 +368,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAgregarProductor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Agregar"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarProductorActionPerformed"/>
@@ -379,10 +379,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSalirProductor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[81, 26]"/>
             </Property>
@@ -456,26 +456,26 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblRegistrarTransportista">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Registro de Trasportista"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="36" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Registro de Trasportista"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNombreRegTransportista">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblContraseniaRegTransportista">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombreRegTransportista">
@@ -497,18 +497,18 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAgregarRegTransportista">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Agregar"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnSalirRegTransportista">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[81, 26]"/>
             </Property>
@@ -582,26 +582,26 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblRegistrarAdministrador">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Registro de Administrador"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="32" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Registro de Administrador"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNombreRegAdministrador">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblContraseniaRegAdministrador">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombreRegAdministrador">
@@ -623,18 +623,18 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAgregarRegAdministrador">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Agregar"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnSalirRegvAdministrador">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[81, 26]"/>
             </Property>

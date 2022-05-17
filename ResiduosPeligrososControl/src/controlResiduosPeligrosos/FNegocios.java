@@ -71,5 +71,23 @@ public class FNegocios implements INegocio{
         
         return this.getControlResiduos().consultarTodosResiduos();
     }
+
+    @Override
+    public boolean consultarExisteNombreQuimico(String nombreConsultar) {
+        return this.getControlQuimicos().consultarExisteNombreQuimico(nombreConsultar);
+
+    }
+
+    @Override
+    public boolean consultarExisteClave(Integer claveConsultar) {
+        return this.getControlResiduos().consultarExisteClaveResiduo(claveConsultar);
+
+    }
+
+    @Override
+    public boolean consultarExisteNombreResiduo(String nombreConsultar) {
+        return this.getControlResiduos().consultarExisteNombreResiduo(nombreConsultar);
+
+    }
     
 }

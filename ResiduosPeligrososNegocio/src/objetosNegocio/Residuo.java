@@ -3,6 +3,8 @@ package objetosNegocio;
 
 import java.util.List;
 import java.util.Objects;
+import org.bson.types.ObjectId;
+
 
 /**
  *
@@ -10,7 +12,7 @@ import java.util.Objects;
  */
 public class Residuo {
     
-    private Object id;
+    private ObjectId id;
     private int codigo;
     private String nombre;
     private List<Quimico>quimicos;
@@ -24,18 +26,18 @@ public class Residuo {
         this.quimicos = quimicos;
     }
 
-    public Residuo(Object id, int codigo, String nombre, List<Quimico> quimicos) {
+    public Residuo(ObjectId id, int codigo, String nombre, List<Quimico> quimicos) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
         this.quimicos = quimicos;
     }
 
-    public Object getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -65,8 +67,8 @@ public class Residuo {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.codigo;
+        int hash = 3;
+        hash = 71 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -82,7 +84,7 @@ public class Residuo {
             return false;
         }
         final Residuo other = (Residuo) obj;
-        return this.codigo == other.codigo;
+        return Objects.equals(this.id, other.id);
     }
 
     @Override
@@ -90,6 +92,8 @@ public class Residuo {
         return "Residuo{" + "id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", quimicos=" + quimicos + '}';
     }
 
+    
+  
 
     
     

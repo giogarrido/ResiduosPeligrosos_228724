@@ -24,4 +24,13 @@ public interface IDatos {
     //BUSCAR TODOS
      public List<Quimico> consultarTodosQuimicos();
      public List<Residuo> consultarTodosResiduos();
+     
+     //CONSULTAR SI EXISTE ALGUN NOMBRE
+     public boolean consultarExisteNombreQuimico(String nombreConsultar);  
+     
+     //CONCULTAR SI EXISTE CLAVE RESIDUO
+     public boolean consultarExisteClaveResiduo(Integer clave);
+     
+     //CONSULTAR SI EXISTE NOMBRE RESIDUO
+     public boolean consultarExisteNombreResiduo(String nombreConsultar);
 }

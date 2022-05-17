@@ -18,6 +18,7 @@ public class PrincipalForm extends javax.swing.JFrame {
     SolicitudesTrasladosForm solicitudesTrasladosForm;
     RegistroTrasladoForm registroTrasladoForm;
     VerSolicitudesTrasladoForm verSolicitudesTrasladoForm;
+    
 
     public PrincipalForm() {
         initComponents();
@@ -47,6 +48,8 @@ public class PrincipalForm extends javax.swing.JFrame {
         
         
     }
+    
+    //private 
 
 
     /**
@@ -80,21 +83,22 @@ public class PrincipalForm extends javax.swing.JFrame {
         pnlContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gestión de residuos peligrosos");
         setBackground(new java.awt.Color(28, 40, 51));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         pnlAcceso.setBackground(new java.awt.Color(238, 238, 238));
         pnlAcceso.setPreferredSize(new java.awt.Dimension(1000, 620));
 
-        lblTitulo.setText("GESTIÓN DE RESIDUOS PELIGROSOS");
         lblTitulo.setBackground(new java.awt.Color(238, 238, 238));
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 52)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(128, 18, 18));
+        lblTitulo.setText("GESTIÓN DE RESIDUOS PELIGROSOS");
 
-        btnAcceso.setText("ACCESO");
         btnAcceso.setBackground(new java.awt.Color(4, 21, 98));
         btnAcceso.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         btnAcceso.setForeground(new java.awt.Color(238, 238, 238));
+        btnAcceso.setText("ACCESO");
         btnAcceso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAccesoActionPerformed(evt);
@@ -103,10 +107,10 @@ public class PrincipalForm extends javax.swing.JFrame {
 
         lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/residuosPeligrosos.jpg"))); // NOI18N
 
-        btnAcercaDe.setText("Acerca de");
         btnAcercaDe.setBackground(new java.awt.Color(17, 70, 143));
         btnAcercaDe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAcercaDe.setForeground(new java.awt.Color(238, 238, 238));
+        btnAcercaDe.setText("Acerca de");
         btnAcercaDe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAcercaDeActionPerformed(evt);
@@ -306,7 +310,7 @@ public class PrincipalForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcercaDeActionPerformed
-        JOptionPane.showMessageDialog(this, "Gestión De Residuos Peligrosos \n Creador por:\n - Luis Angel Marín Figueroa\n - 000000\n - Giovanni Martín Garrido Barrón\n - 228724", "Acerca De", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Gestión De Residuos Peligrosos \n Creador por:\n - Giovanni Martín Garrido Barrón\n - 228724", "Acerca De", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
     private void btnAccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccesoActionPerformed

@@ -57,6 +57,22 @@ public class FDatos implements IDatos{
     public List<Residuo> consultarTodosResiduos() {
         return this.getResiduosDAO().consultarTodos();
     }
+
+    @Override
+    public boolean consultarExisteNombreQuimico(String nombreConsultar) {
+        return this.getQuimicosDAO().consultarExisteNombre(nombreConsultar);
+    }
+
+    @Override
+    public boolean consultarExisteClaveResiduo(Integer claveConsultar) {
+        return this.getResiduosDAO().consultarExisteClaveResiduo(claveConsultar);
+    }
+
+    @Override
+    public boolean consultarExisteNombreResiduo(String nombreConsultar) {
+        return this.getResiduosDAO().consultarExisteNombre(nombreConsultar);
+
+    }
    
     
     

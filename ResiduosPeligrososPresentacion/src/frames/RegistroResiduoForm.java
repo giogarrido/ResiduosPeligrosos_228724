@@ -5,6 +5,8 @@ import objetosNegocio.Residuo;
 import controlResiduosPeligrosos.FabricaN;
 import controlResiduosPeligrosos.INegocio;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -110,15 +112,23 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
         } else {
             if (validarCamposLlenos()) {
                 int codigo = Integer.parseInt(this.txtCodigoResiduo.getText());
-                String nombre = this.txtNombreResiduo.getText();
+                String nombre = this.txtNombreResiduo.getText().toUpperCase();
                 List<Quimico> quimicos = listaQuimicosResiduo;
-                Residuo residuo = new Residuo(codigo, nombre, quimicos);
-                boolean seAgrego = negocio.agregarResiduo(residuo);
-                if (seAgrego) {
-                    JOptionPane.showMessageDialog(this, "Se agrego el quimico", "información", JOptionPane.INFORMATION_MESSAGE);
-                    limpiarPanelResiduo();
+                if (negocio.consultarExisteClave(codigo)) {
+                    JOptionPane.showMessageDialog(this, "La clave ya existe", "error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "No fue posible agregar el quimico", "Error", JOptionPane.ERROR_MESSAGE);
+                    if (negocio.consultarExisteNombreResiduo(nombre)) {
+                        JOptionPane.showMessageDialog(this, "El nombre ya existe", "error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        Residuo residuo = new Residuo(codigo, nombre, quimicos);
+                        boolean seAgrego = negocio.agregarResiduo(residuo);
+                        if (seAgrego) {
+                            JOptionPane.showMessageDialog(this, "Se agrego el quimico", "información", JOptionPane.INFORMATION_MESSAGE);
+                            limpiarPanelResiduo();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "No fue posible agregar el quimico", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
                 }
 
             } else {
@@ -157,8 +167,9 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
     private boolean validarCampoCodigo() {
         String codigo = txtCodigoResiduo.getText();
         if (validadores.validaEntero(codigo)) {
-            if(codigo.length()==6)
-            return true;
+            if (codigo.length() == 6) {
+                return true;
+            }
         }
         return false;
     }
@@ -190,7 +201,7 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Quimico Disponible"
+                "Químico Disponible"
             }
         ) {
             Class[] types = new Class [] {
@@ -252,7 +263,7 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Quimico del Residuo"
+                "Químico del Residuo"
             }
         ) {
             Class[] types = new Class [] {

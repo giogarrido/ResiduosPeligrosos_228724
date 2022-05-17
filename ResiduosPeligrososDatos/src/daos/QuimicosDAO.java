@@ -5,17 +5,20 @@
 package daos;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.gt;
 import objetosNegocio.Quimico;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.Document;
 
 /**
  *
  * @author giova
  */
-public class QuimicosDAO extends DAOsBase<Quimico>{
-
+public class QuimicosDAO extends DAOsBase<Quimico> {
 
     private MongoDatabase baseDatos;
 
@@ -50,11 +53,26 @@ public class QuimicosDAO extends DAOsBase<Quimico>{
             List<Quimico> listaQuimicos = new LinkedList<>();
             coleccion.find().into(listaQuimicos);
             return listaQuimicos;
-        }catch(IllegalStateException ex){
+        } catch (IllegalStateException ex) {
             System.err.println("No se pudieron consultar los quimicos ");
             ex.printStackTrace();
             return null;
         }
+
+    }
+
+    @Override
+    protected boolean consultarExisteNombre(String nombreConsultar) {
+        boolean existe=true;
+        Quimico quimico=null;
+
+        MongoCollection<Quimico> coleccion = this.getColeccion();
+        quimico = coleccion.find(eq("nombre", nombreConsultar)).first();
+
+        if(quimico==null){
+            existe=false;
+        }
+        return existe;
 
     }
 

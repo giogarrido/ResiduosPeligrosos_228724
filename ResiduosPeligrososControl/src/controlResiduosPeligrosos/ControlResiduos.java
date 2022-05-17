@@ -24,4 +24,14 @@ public class ControlResiduos {
     public List<Residuo> consultarTodosResiduos(){
         return this.datos.consultarTodosResiduos();
     }
+    
+     //CONCULTAR SI EXISTE CLAVE RESIDUO
+     public boolean consultarExisteClaveResiduo(Integer claveConsultar){
+         return this.datos.consultarExisteClaveResiduo(claveConsultar);
+     }
+     
+     //CONSULTAR SI EXISTE NOMBRE RESIDUO
+     public boolean consultarExisteNombreResiduo(String nombreConsultar){
+         return this.datos.consultarExisteNombreResiduo(nombreConsultar);
+     }
 }

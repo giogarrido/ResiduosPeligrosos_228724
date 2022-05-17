@@ -25,4 +25,8 @@ public class ControlQuimicos {
     public List<Quimico> consultarTodosQuimicos(){
         return this.datos.consultarTodosQuimicos();
     }
+    
+    public boolean consultarExisteNombreQuimico(String nombreConsultar){
+        return this.datos.consultarExisteNombreQuimico(nombreConsultar);
+    }
 }

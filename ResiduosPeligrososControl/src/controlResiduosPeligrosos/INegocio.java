@@ -25,4 +25,13 @@ public interface INegocio {
     //Consultar todos
     public List<Quimico> consultarTodosQuimicos();
     public List<Residuo> consultarTodosResiduos();
+    
+    //Consultar si existe nombre
+    public boolean consultarExisteNombreQuimico(String nombreConsultar);
+    
+     //CONCULTAR SI EXISTE CLAVE RESIDUO
+     public boolean consultarExisteClave(Integer claveConsultar);
+     
+     //CONSULTAR SI EXISTE NOMBRE RESIDUO
+     public boolean consultarExisteNombreResiduo(String nombreConsultar);
 }
