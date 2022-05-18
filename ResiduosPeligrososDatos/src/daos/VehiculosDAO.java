@@ -7,52 +7,50 @@ package daos;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
-import entidades.Quimico;
+import entidades.Vehiculo;
 import java.util.LinkedList;
 import java.util.List;
-
-
 /**
  *
  * @author giova
  */
-public class QuimicosDAO extends DAOsBase<Quimico> {
-
+public class VehiculosDAO extends DAOsBase<Vehiculo>{
+    
     private MongoDatabase baseDatos;
 
-    public QuimicosDAO() {
+    public VehiculosDAO() {
 
         this.baseDatos = ConexionBD.getConexionBD();
     }
 
     private MongoCollection getColeccion() {
-        return this.baseDatos.getCollection("quimicos", Quimico.class);
+        return this.baseDatos.getCollection("vehiculos", Vehiculo.class);
     }
 
     @Override
-    public boolean agregar(Quimico quimico) {
+    public boolean agregar(Vehiculo vehiculo) {
 
         try {
-            MongoCollection<Quimico> coleccion = this.getColeccion();
-            coleccion.insertOne(quimico);
+            MongoCollection<Vehiculo> coleccion = this.getColeccion();
+            coleccion.insertOne(vehiculo);
             return true;
         } catch (IllegalStateException ex) {
-            System.err.println("No se pudo agregar el quimico");
+            System.err.println("No se pudo agregar el vehículo");
             ex.printStackTrace();
             return false;
         }
     }
 
     @Override
-    public List<Quimico> consultarTodos() {
+    public List<Vehiculo> consultarTodos() {
 
         try {
-            MongoCollection<Quimico> coleccion = this.getColeccion();
-            List<Quimico> listaQuimicos = new LinkedList<>();
-            coleccion.find().into(listaQuimicos);
-            return listaQuimicos;
+            MongoCollection<Vehiculo> coleccion = this.getColeccion();
+            List<Vehiculo> listaVehiculos = new LinkedList<>();
+            coleccion.find().into(listaVehiculos);
+            return listaVehiculos;
         } catch (IllegalStateException ex) {
-            System.err.println("No se pudieron consultar los quimicos ");
+            System.err.println("No se pudieron consultar los vehiculos ");
             ex.printStackTrace();
             return null;
         }
@@ -62,16 +60,16 @@ public class QuimicosDAO extends DAOsBase<Quimico> {
     @Override
     protected boolean consultarExisteNombre(String nombreConsultar) {
         boolean existe=true;
-        Quimico quimico=null;
+        Vehiculo vehiculo=null;
 
-        MongoCollection<Quimico> coleccion = this.getColeccion();
-        quimico = coleccion.find(eq("nombre", nombreConsultar)).first();
+        MongoCollection<Vehiculo> coleccion = this.getColeccion();
+        vehiculo = coleccion.find(eq("placas", nombreConsultar)).first();
 
-        if(quimico==null){
+        if(vehiculo==null){
             existe=false;
         }
         return existe;
 
     }
-
+    
 }

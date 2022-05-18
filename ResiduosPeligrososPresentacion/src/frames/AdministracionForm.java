@@ -6,10 +6,11 @@ package frames;
 
 import controlResiduosPeligrosos.FabricaN;
 import controlResiduosPeligrosos.INegocio;
-import entidades.Productor;
-import entidades.Quimico;
+import entidades.*;
 
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,7 @@ import javax.swing.JOptionPane;
 public class AdministracionForm extends javax.swing.JFrame {
 
     private INegocio negocio = FabricaN.fabricaN();
+    private List<Transporte> listaTrasportistas;
 
     public AdministracionForm() {
         initComponents();
@@ -353,6 +355,11 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         btnAgregarRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAgregarRegTransportista.setText("Agregar");
+        btnAgregarRegTransportista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarRegTransportistaActionPerformed(evt);
+            }
+        });
 
         btnSalirRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSalirRegTransportista.setText("Salir");
@@ -427,6 +434,11 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         btnAgregarRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAgregarRegAdministrador.setText("Agregar");
+        btnAgregarRegAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarRegAdministradorActionPerformed(evt);
+            }
+        });
 
         btnSalirRegvAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSalirRegvAdministrador.setText("Salir");
@@ -503,6 +515,11 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         btnGuardarRegVh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnGuardarRegVh.setText("Guardar");
+        btnGuardarRegVh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarRegVhActionPerformed(evt);
+            }
+        });
 
         btnSalirRegVh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSalirRegVh.setText("Salir");
@@ -543,9 +560,7 @@ public class AdministracionForm extends javax.swing.JFrame {
                 .addComponent(lblRegistroVehiculos)
                 .addGap(53, 53, 53)
                 .addGroup(pnlRegVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlRegVehiculoLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(lblTransportistaRegVh))
+                    .addComponent(lblTransportistaRegVh)
                     .addComponent(cmbTransportistaRegVh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(pnlRegVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -613,7 +628,7 @@ public class AdministracionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseniaRegProductorActionPerformed
 
     private void btnAgregarProductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductorActionPerformed
-    agregarProductor();
+        agregarProductor();
     }//GEN-LAST:event_btnAgregarProductorActionPerformed
 
     private void btnSalirProductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirProductorActionPerformed
@@ -644,9 +659,12 @@ public class AdministracionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirRegvAdministradorActionPerformed
 
     private void btnRegVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegVehiculoActionPerformed
+        llenarCajaTrasnportistasRegVeh();
+
         CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
         cl.show(this.getContentPane(), "regVehiculo");
         this.setTitle("Registro de Vehículo");
+
     }//GEN-LAST:event_btnRegVehiculoActionPerformed
 
     private void txtTipoVehiculoRegVhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoVehiculoRegVhActionPerformed
@@ -657,6 +675,19 @@ public class AdministracionForm extends javax.swing.JFrame {
         regresar();
     }//GEN-LAST:event_btnSalirRegVhActionPerformed
 
+    private void btnAgregarRegAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarRegAdministradorActionPerformed
+
+        agregarAdministrador();
+    }//GEN-LAST:event_btnAgregarRegAdministradorActionPerformed
+
+    private void btnGuardarRegVhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRegVhActionPerformed
+
+    }//GEN-LAST:event_btnGuardarRegVhActionPerformed
+
+    private void btnAgregarRegTransportistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarRegTransportistaActionPerformed
+        agregarTrasnporte();
+    }//GEN-LAST:event_btnAgregarRegTransportistaActionPerformed
+
     private void regresar() {
         CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
         cl.show(this.getContentPane(), "registro");
@@ -666,8 +697,8 @@ public class AdministracionForm extends javax.swing.JFrame {
     private void limpiarQumico() {
         txtNombreQuimico.setText("");
     }
-    
-    private void limpiarProductor(){
+
+    private void limpiarProductor() {
         txtNombreRegProductor.setText("");
         txtContraseniaRegProductor.setText("");
     }
@@ -693,17 +724,17 @@ public class AdministracionForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "información", JOptionPane.INFORMATION_MESSAGE);
         }
 
-    }
-    
+    }//end agregarQuimico
+
     private void agregarProductor() {
         String nombreProductor = this.txtNombreRegProductor.getText().toUpperCase();
         String contrasenia = this.txtContraseniaRegProductor.getText();
-        if (!campoVacio(nombreProductor)) {
+        if (!campoVacio(nombreProductor) && !campoVacio(contrasenia)) {
 
             if (negocio.consultarExisteNombreProductor(nombreProductor)) {
                 JOptionPane.showMessageDialog(this, "El Productor ya existe", "error", JOptionPane.ERROR_MESSAGE);
             } else {
-                   Productor productor = new Productor(nombreProductor, contrasenia);
+                Productor productor = new Productor(nombreProductor, contrasenia);
                 boolean seAgrego = negocio.agregarProductor(productor);
                 if (seAgrego) {
                     JOptionPane.showMessageDialog(this, "Se registro el productor", "información", JOptionPane.INFORMATION_MESSAGE);
@@ -717,7 +748,81 @@ public class AdministracionForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "información", JOptionPane.INFORMATION_MESSAGE);
         }
 
-    }
+    }//end agregarProductor
+
+    private void agregarAdministrador() {
+        String nombreAdministrador = this.txtNombreRegAdministrador.getText().toUpperCase();
+        String contrasenia = this.txtContraseniaRegAdministrador.getText();
+        if (!campoVacio(nombreAdministrador) && !campoVacio(contrasenia)) {
+
+            if (negocio.consultarExisteNombreAdministrador(nombreAdministrador)) {
+                JOptionPane.showMessageDialog(this, "El Administrador ya existe", "error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Administrador administrador = new Administrador(nombreAdministrador, contrasenia);
+                boolean seAgrego = negocio.agregarAdministrador(administrador);
+                if (seAgrego) {
+                    JOptionPane.showMessageDialog(this, "Se registro el administrador", "información", JOptionPane.INFORMATION_MESSAGE);
+                    this.limpiarProductor();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No fue posible registrar al administrador", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "información", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }//end agregarAdministrador
+
+    private void agregarTrasnporte() {
+        String nombreTrasnporte = this.txtNombreRegTransportista.getText().toUpperCase();
+        String contrasenia = this.txtContraseniaRegTransportista.getText();
+        //String transportista = this.cmbTransportistaRegVh.
+        if (!campoVacio(nombreTrasnporte) && !campoVacio(contrasenia)) {
+
+            if (negocio.consultarExisteNombretrasnporte(nombreTrasnporte)) {
+                JOptionPane.showMessageDialog(this, "El Trasnportista ya existe", "error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Transporte transporte = new Transporte(nombreTrasnporte, contrasenia);
+                boolean seAgrego = negocio.agregarTrasnporte(transporte);
+                if (seAgrego) {
+                    JOptionPane.showMessageDialog(this, "Se registro el Trasnportista", "información", JOptionPane.INFORMATION_MESSAGE);
+                    this.limpiarProductor();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No fue posible registrar al transportista", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "información", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }//end agregarTransporte
+
+    private void agregarVehiculo() {
+        String tipoVehiculo = this.txtTipoVehiculoRegVh.getText().toUpperCase();
+        String placas = this.txtPlacasRegVh.getText();
+
+        if (!campoVacio(tipoVehiculo) && !campoVacio(placas)) {
+
+            if (negocio.consultarExistePlacaVehiculo(placas)) {
+                JOptionPane.showMessageDialog(this, "Las placas ya existen", "error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Vehiculo vehiculo = new Vehiculo(tipoVehiculo, placas);
+                boolean seAgrego = negocio.agregarVehiculo(vehiculo);
+                if (seAgrego) {
+                    JOptionPane.showMessageDialog(this, "Se registro el Vehículo", "información", JOptionPane.INFORMATION_MESSAGE);
+                    this.limpiarProductor();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No fue posible registrar el vehículo", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "información", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }//end agregarVehículo
 
     private boolean campoVacio(String campo) {
         int tamañoCampo = campo.length();
@@ -727,6 +832,33 @@ public class AdministracionForm extends javax.swing.JFrame {
         return false;
     }
 
+    private void llenarCajaTrasnportistasRegVeh() {
+        
+        listaTrasportistas = negocio.consultarTodosTrasnportes();
+        
+        for(int i =0; i < listaTrasportistas.size(); i++){
+            cmbTransportistaRegVh.addItem(listaTrasportistas.get(i).getNombre());
+        }
+/*
+        ArrayList<Transporte> listaTransporte = (ArrayList<Transporte>) negocio.consultarTodosTrasnportes();
+        cmbTransportistaRegVh.removeAll();
+
+        for (int i = 0; i < listaTransporte.size(); i++) {
+            cmbTransportistaRegVh.addItem(listaTransporte.get(i).getNombre());
+        }
+*/
+    }
+
+    /*
+    public void llenarCajaIdLugares() {
+        ArrayList<String> listaLugares = new ArrayList<>();
+        listaLugares = this.eventosDAO.consultarIdLugares();
+
+        for (int i = 0; i < listaLugares.size(); i++) {
+            cmbIdLugar.addItem(listaLugares.get(i));
+        }
+    }
+     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProductor;

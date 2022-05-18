@@ -4,10 +4,10 @@
  */
 package daos;
 
+import entidades.Administrador;
 import entidades.Productor;
 import java.util.List;
-import entidades.Quimico;
-import entidades.Residuo;
+import entidades.*;
 
 /**
  *
@@ -18,6 +18,9 @@ public class FDatos implements IDatos{
     private QuimicosDAO quimicosDAO;
     private ResiduosDAO residuosDAO;
     private ProductorDAO productorDAO;
+    private AdministradorDAO administradorDAO;
+    private VehiculosDAO vehiculosDAO;
+    private TransportesDAO transportesDAO;
     
     private QuimicosDAO getQuimicosDAO(){
         if(this.quimicosDAO!=null){
@@ -43,6 +46,33 @@ public class FDatos implements IDatos{
         }else{
             this.productorDAO = new ProductorDAO();
             return this.productorDAO;
+        }
+    }
+    
+    private AdministradorDAO getAdministradorDAO(){
+        if(this.administradorDAO!=null){
+            return administradorDAO;
+        }else{
+            this.administradorDAO = new AdministradorDAO();
+            return this.administradorDAO;
+        }
+    }
+    
+    private VehiculosDAO getVehiculoDAO(){
+        if(this.vehiculosDAO!=null){
+            return vehiculosDAO;
+        }else{
+            this.vehiculosDAO = new VehiculosDAO();
+            return this.vehiculosDAO;
+        }
+    }
+    
+    private TransportesDAO getTransportesDAO(){
+        if(this.transportesDAO!=null){
+            return transportesDAO;
+        }else{
+            this.transportesDAO = new TransportesDAO();
+            return this.transportesDAO;
         }
     }
 
@@ -99,6 +129,54 @@ public class FDatos implements IDatos{
     public boolean consultarExisteNombreProductor(String nombreConsultar) {
 
         return this.getProductoresDAO().consultarExisteNombre(nombreConsultar);
+    }
+
+    @Override
+    public boolean agregarAdministrador(Administrador administrador) {
+        return this.getAdministradorDAO().agregar(administrador);
+
+    }
+
+    @Override
+    public List<Administrador> consultarTodosAdministradores() {
+        return this.getAdministradorDAO().consultarTodos();
+    }
+
+    @Override
+    public boolean consultarExisteNombreAdministrador(String nombreConsultar) {
+        return this.getAdministradorDAO().consultarExisteNombre(nombreConsultar);
+    }
+
+    @Override
+    public boolean agregarVehiculo(Vehiculo vehiculo) {
+        return this.getVehiculoDAO().agregar(vehiculo);
+    }
+
+    @Override
+    public List<Vehiculo> consultarTodosVehiculos() {
+        return this.getVehiculoDAO().consultarTodos();
+    }
+
+    @Override
+    public boolean consultarExistePlacaVehiculo(String placas) {
+        return this.getVehiculoDAO().consultarExisteNombre(placas);
+    }
+
+    @Override
+    public boolean agregarTransporte(Transporte transporte) {
+        return this.getTransportesDAO().agregar(transporte);
+
+    }
+
+    @Override
+    public List<Transporte> consultarTodosTransportes() {
+        return this.getTransportesDAO().consultarTodos();
+    }
+
+    @Override
+    public boolean consultarExisteNombreTransporte(String nombreConsultar) {
+        return this.getTransportesDAO().consultarExisteNombre(nombreConsultar);
+
     }
    
     

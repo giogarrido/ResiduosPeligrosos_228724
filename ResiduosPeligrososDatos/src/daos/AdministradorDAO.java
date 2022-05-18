@@ -7,7 +7,7 @@ package daos;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
-import entidades.Productor;
+import entidades.Administrador;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,39 +15,39 @@ import java.util.List;
  *
  * @author giova
  */
-public class ProductorDAO extends DAOsBase<Productor>{
+public class AdministradorDAO extends DAOsBase<Administrador>{
     
     private MongoDatabase baseDatos;
     
-    public ProductorDAO(){
+    public AdministradorDAO(){
         this.baseDatos=ConexionBD.getConexionBD();
     }
     
     private MongoCollection getColeccion() {
-        return this.baseDatos.getCollection("productores", Productor.class);
+        return this.baseDatos.getCollection("administradores", Administrador.class);
     }
 
     @Override
-    protected boolean agregar(Productor productor) {
+    protected boolean agregar(Administrador administrador) {
         try {
-            MongoCollection<Productor> coleccion = this.getColeccion();
-            coleccion.insertOne(productor);
+            MongoCollection<Administrador> coleccion = this.getColeccion();
+            coleccion.insertOne(administrador);
             return true;
         } catch (IllegalStateException ex) {
-            System.err.println("No se pudeo agregar el productor");
+            System.err.println("No se pudeo agregar el administrador");
             ex.printStackTrace();
             return false;
         }}
 
     @Override
-    protected List<Productor> consultarTodos() {
+    protected List<Administrador> consultarTodos() {
         try {
-            MongoCollection<Productor> coleccion = this.getColeccion();
-            List<Productor> listaProductores = new LinkedList<>();
-            coleccion.find().into(listaProductores);
-            return listaProductores;
+            MongoCollection<Administrador> coleccion = this.getColeccion();
+            List<Administrador> listaAdministradores = new LinkedList<>();
+            coleccion.find().into(listaAdministradores);
+            return listaAdministradores;
         } catch (IllegalStateException ex) {
-            System.err.println("No se pudieron consultar los productores ");
+            System.err.println("No se pudieron consultar los administradores ");
             ex.printStackTrace();
             return null;
         }}
@@ -55,12 +55,12 @@ public class ProductorDAO extends DAOsBase<Productor>{
     @Override
     protected boolean consultarExisteNombre(String nombreConsultar) {
         boolean existe=true;
-        Productor productor=null;
+        Administrador administrador=null;
 
-        MongoCollection<Productor> coleccion = this.getColeccion();
-        productor = coleccion.find(eq("nombre", nombreConsultar)).first();
+        MongoCollection<Administrador> coleccion = this.getColeccion();
+        administrador = coleccion.find(eq("nombre", nombreConsultar)).first();
 
-        if(productor==null){
+        if(administrador==null){
             existe=false;
         }
         return existe;
