@@ -10,11 +10,25 @@ package frames;
  */
 public class RegistroTrasladoForm extends javax.swing.JPanel {
 
+    private boolean estaActivado;
+    
     /**
-     * Creates new form RegistroTrasladoForm
+     * Creates new form solicitudesTrasladosForm
      */
     public RegistroTrasladoForm() {
+
+        estaActivado=false;
+    }
+    
+    public void cargarContenido(){
         initComponents();
+        
+        estaActivado= true;
+    }
+    
+    
+    public boolean estaActivado(){
+        return estaActivado;
     }
 
     /**

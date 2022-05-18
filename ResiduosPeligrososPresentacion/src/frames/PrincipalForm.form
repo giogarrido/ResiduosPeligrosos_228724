@@ -298,7 +298,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ee" green="ee" red="ee" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Registrar Solicitar Traslado"/>
+                    <Property name="text" type="java.lang.String" value="Solicitar Traslado Residuo"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSolicitarRegistarTrasladoActionPerformed"/>
@@ -326,8 +326,11 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ee" green="ee" red="ee" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Ver Solicitudes de Traslado"/>
+                    <Property name="text" type="java.lang.String" value="Asignar Traslado a Empresa"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerSolicitudTrasladoActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card2"/>

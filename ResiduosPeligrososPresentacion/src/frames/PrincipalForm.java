@@ -18,6 +18,7 @@ public class PrincipalForm extends javax.swing.JFrame {
     SolicitudesTrasladosForm solicitudesTrasladosForm;
     RegistroTrasladoForm registroTrasladoForm;
     VerSolicitudesTrasladoForm verSolicitudesTrasladoForm;
+    VehiculosForm vehiculosForm;
     
 
     public PrincipalForm() {
@@ -30,9 +31,6 @@ public class PrincipalForm extends javax.swing.JFrame {
     
     public void cargarPanel(){
         
-
-        informacionTrasladoForm = new InformacionTrasladoForm();
-        pnlContent.add(informacionTrasladoForm, "informacionTraslados");
         
         registroResiduoForm = new RegistroResiduoForm();
         pnlContent.add(registroResiduoForm, "registroResiduos");
@@ -44,8 +42,10 @@ public class PrincipalForm extends javax.swing.JFrame {
         pnlContent.add(solicitudesTrasladosForm, "solicitudTraslados");
         
         verSolicitudesTrasladoForm = new VerSolicitudesTrasladoForm();
-        pnlContent.add(verSolicitudesTrasladoForm,"verSolicituddesTraslado");
+        pnlContent.add(verSolicitudesTrasladoForm,"verSolicitudesTraslado");
         
+        vehiculosForm = new VehiculosForm();
+        pnlContent.add(vehiculosForm,"vehiculos");
         
     }
     
@@ -186,7 +186,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         btnSolicitarRegistarTraslado.setBackground(new java.awt.Color(4, 21, 98));
         btnSolicitarRegistarTraslado.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnSolicitarRegistarTraslado.setForeground(new java.awt.Color(238, 238, 238));
-        btnSolicitarRegistarTraslado.setText("Registrar Solicitar Traslado");
+        btnSolicitarRegistarTraslado.setText("Solicitar Traslado Residuo");
         btnSolicitarRegistarTraslado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSolicitarRegistarTrasladoActionPerformed(evt);
@@ -199,7 +199,12 @@ public class PrincipalForm extends javax.swing.JFrame {
         btnVerSolicitudTraslado.setBackground(new java.awt.Color(4, 21, 98));
         btnVerSolicitudTraslado.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnVerSolicitudTraslado.setForeground(new java.awt.Color(238, 238, 238));
-        btnVerSolicitudTraslado.setText("Ver Solicitudes de Traslado");
+        btnVerSolicitudTraslado.setText("Asignar Traslado a Empresa");
+        btnVerSolicitudTraslado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerSolicitudTrasladoActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnVerSolicitudTraslado, "card2");
 
         jPanel4.setPreferredSize(new java.awt.Dimension(0, 0));
@@ -367,7 +372,15 @@ public class PrincipalForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministracionActionPerformed
 
     private void btnRegistrarTrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarTrasladoActionPerformed
-        // TODO add your handling code here:
+        CardLayout cl = (CardLayout) (pnlContent.getLayout());
+        if (!registroTrasladoForm.estaActivado()) {
+            registroTrasladoForm.cargarContenido();
+        } else {
+            //actualizar datos
+        }
+
+        cl.show(pnlContent, "registroTraslados");
+        this.setTitle("Registro de Traslado");
     }//GEN-LAST:event_btnRegistrarTrasladoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -387,6 +400,20 @@ public class PrincipalForm extends javax.swing.JFrame {
         cl.show(pnlContent, "solicitudTraslados");
         this.setTitle("Solicitar Traslado de Residuos");
     }//GEN-LAST:event_btnSolicitarRegistarTrasladoActionPerformed
+
+    private void btnVerSolicitudTrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerSolicitudTrasladoActionPerformed
+
+        CardLayout cl = (CardLayout) (pnlContent.getLayout());
+        if (!verSolicitudesTrasladoForm.estaActivado()) {
+            verSolicitudesTrasladoForm.cargarContenido();
+        } else {
+            //actualiza datos
+        }
+
+        cl.show(pnlContent, "verSolicitudesTraslado");
+        this.setTitle("Ver Solicitudes de Traslado");
+
+    }//GEN-LAST:event_btnVerSolicitudTrasladoActionPerformed
 
     /*
 

@@ -23,6 +23,12 @@ public class VerSolicitudesTrasladoForm extends javax.swing.JPanel {
     
     public void cargarContenido(){
 
+        initComponents();
+        estaActivado=true;
+    }
+    
+    public boolean estaActivado(){
+        return estaActivado;
     }
             
 
@@ -40,8 +46,8 @@ public class VerSolicitudesTrasladoForm extends javax.swing.JPanel {
         tblAsignarTraslado = new javax.swing.JTable();
         btnAsignarTraslado = new javax.swing.JButton();
 
+        lblAsignarTrasladoEmpresa.setText("Solicitudes de Traslado");
         lblAsignarTrasladoEmpresa.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblAsignarTrasladoEmpresa.setText("Asignar Traslado a Empresa");
 
         tblAsignarTraslado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -68,7 +74,12 @@ public class VerSolicitudesTrasladoForm extends javax.swing.JPanel {
         });
         pnlTablaAsignarTraslado.setViewportView(tblAsignarTraslado);
 
-        btnAsignarTraslado.setText("Asignar");
+        btnAsignarTraslado.setText("Asignar Empresa");
+        btnAsignarTraslado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarTrasladoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -77,27 +88,55 @@ public class VerSolicitudesTrasladoForm extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnAsignarTraslado)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(267, 267, 267)
-                            .addComponent(lblAsignarTrasladoEmpresa))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(203, 203, 203)
-                            .addComponent(pnlTablaAsignarTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(212, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(203, 203, 203)
+                        .addComponent(pnlTablaAsignarTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(206, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblAsignarTrasladoEmpresa)
+                .addGap(297, 297, 297))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(35, 35, 35)
                 .addComponent(lblAsignarTrasladoEmpresa)
-                .addGap(90, 90, 90)
+                .addGap(93, 93, 93)
                 .addComponent(pnlTablaAsignarTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(btnAsignarTraslado)
                 .addGap(45, 45, 45))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAsignarTrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarTrasladoActionPerformed
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(InformacionTrasladoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(InformacionTrasladoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(InformacionTrasladoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(InformacionTrasladoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new InformacionTrasladoForm().setVisible(true);
+            }
+        });
+
+    }//GEN-LAST:event_btnAsignarTrasladoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
