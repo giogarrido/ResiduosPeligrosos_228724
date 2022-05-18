@@ -9,7 +9,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.gt;
-import objetosNegocio.Quimico;
+import entidades.Quimico;
 import java.util.LinkedList;
 import java.util.List;
 import org.bson.Document;

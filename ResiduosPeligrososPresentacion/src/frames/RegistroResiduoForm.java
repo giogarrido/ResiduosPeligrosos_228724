@@ -1,7 +1,7 @@
 package frames;
 
-import objetosNegocio.Quimico;
-import objetosNegocio.Residuo;
+import entidades.Quimico;
+import entidades.Residuo;
 import controlResiduosPeligrosos.FabricaN;
 import controlResiduosPeligrosos.INegocio;
 import java.util.ArrayList;

@@ -4,10 +4,10 @@ package daos;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
-import objetosNegocio.Residuo;
+import entidades.Residuo;
 import java.util.LinkedList;
 import java.util.List;
-import objetosNegocio.Quimico;
+import entidades.Quimico;
 
 /**
  *

@@ -7,7 +7,7 @@ package controlResiduosPeligrosos;
 import daos.IDatos;
 import daos.FabricaD;
 import java.util.List;
-import objetosNegocio.Quimico;
+import entidades.Quimico;
 
 /**
  *

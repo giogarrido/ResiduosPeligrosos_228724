@@ -26,19 +26,135 @@ public class RegistroTrasladoForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblRegistroTraslados = new javax.swing.JLabel();
+        lblEmpresaRegistroTraslado = new javax.swing.JLabel();
+        txtEmpresaRegistriVehiculo = new javax.swing.JTextField();
+        lblFechaRegistroTraslado = new javax.swing.JLabel();
+        dpckFechaRegistroTraslado = new com.github.lgooddatepicker.components.DatePicker();
+        lblResiduoRegistroTraslado = new javax.swing.JLabel();
+        txtResiduoRegistroTraslado = new javax.swing.JTextField();
+        lblcantidadRegistroTraslado = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        lblProductorRegistroTraslado = new javax.swing.JLabel();
+        txtProductorRegistroTraslado = new javax.swing.JTextField();
+        lblVehiuclosRegistroTraslado = new javax.swing.JLabel();
+        txtVehiculosRegistroTraslado = new javax.swing.JTextField();
+
+        lblRegistroTraslados.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblRegistroTraslados.setText("Registro Traslados");
+
+        lblEmpresaRegistroTraslado.setText("Empresa");
+
+        txtEmpresaRegistriVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpresaRegistriVehiculoActionPerformed(evt);
+            }
+        });
+
+        lblFechaRegistroTraslado.setText("Fecha:");
+
+        lblResiduoRegistroTraslado.setText("Residuo:");
+
+        txtResiduoRegistroTraslado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtResiduoRegistroTrasladoActionPerformed(evt);
+            }
+        });
+
+        lblcantidadRegistroTraslado.setText("Cantidad:");
+
+        lblProductorRegistroTraslado.setText("Productor:");
+
+        lblVehiuclosRegistroTraslado.setText("Vehículos:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(345, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lblRegistroTraslados)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblProductorRegistroTraslado)
+                                    .addComponent(lblcantidadRegistroTraslado)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblResiduoRegistroTraslado)
+                                            .addComponent(lblFechaRegistroTraslado)
+                                            .addComponent(lblEmpresaRegistroTraslado))
+                                        .addGap(8, 8, 8)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblVehiuclosRegistroTraslado)
+                                .addGap(59, 59, 59)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtProductorRegistroTraslado)
+                            .addComponent(jTextField1)
+                            .addComponent(dpckFechaRegistroTraslado, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                            .addComponent(txtResiduoRegistroTraslado)
+                            .addComponent(txtEmpresaRegistriVehiculo)
+                            .addComponent(txtVehiculosRegistroTraslado))))
+                .addGap(342, 342, 342))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(lblRegistroTraslados)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmpresaRegistroTraslado)
+                    .addComponent(txtEmpresaRegistriVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFechaRegistroTraslado)
+                    .addComponent(dpckFechaRegistroTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblResiduoRegistroTraslado)
+                    .addComponent(txtResiduoRegistroTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblcantidadRegistroTraslado)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblProductorRegistroTraslado)
+                    .addComponent(txtProductorRegistroTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblVehiuclosRegistroTraslado)
+                    .addComponent(txtVehiculosRegistroTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtEmpresaRegistriVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpresaRegistriVehiculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpresaRegistriVehiculoActionPerformed
+
+    private void txtResiduoRegistroTrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResiduoRegistroTrasladoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtResiduoRegistroTrasladoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.github.lgooddatepicker.components.DatePicker dpckFechaRegistroTraslado;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblEmpresaRegistroTraslado;
+    private javax.swing.JLabel lblFechaRegistroTraslado;
+    private javax.swing.JLabel lblProductorRegistroTraslado;
+    private javax.swing.JLabel lblRegistroTraslados;
+    private javax.swing.JLabel lblResiduoRegistroTraslado;
+    private javax.swing.JLabel lblVehiuclosRegistroTraslado;
+    private javax.swing.JLabel lblcantidadRegistroTraslado;
+    private javax.swing.JTextField txtEmpresaRegistriVehiculo;
+    private javax.swing.JTextField txtProductorRegistroTraslado;
+    private javax.swing.JTextField txtResiduoRegistroTraslado;
+    private javax.swing.JTextField txtVehiculosRegistroTraslado;
     // End of variables declaration//GEN-END:variables
 }

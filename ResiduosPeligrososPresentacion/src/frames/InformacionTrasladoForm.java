@@ -26,21 +26,68 @@ public class InformacionTrasladoForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setPreferredSize(new java.awt.Dimension(1220, 500));
+        lblinformacionTraslado = new javax.swing.JLabel();
+        pnlTablaInformacionTraslado = new javax.swing.JScrollPane();
+        tblInformacionTraslado = new javax.swing.JTable();
+
+        setPreferredSize(new java.awt.Dimension(1000, 500));
+
+        lblinformacionTraslado.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblinformacionTraslado.setText("Información del Traslado");
+
+        tblInformacionTraslado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Productor", "Fecha", "Residuo", "Cantidad"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        pnlTablaInformacionTraslado.setViewportView(tblInformacionTraslado);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblinformacionTraslado)
+                .addGap(286, 286, 286))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(257, 257, 257)
+                .addComponent(pnlTablaInformacionTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(260, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(lblinformacionTraslado)
+                .addGap(42, 42, 42)
+                .addComponent(pnlTablaInformacionTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(137, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblinformacionTraslado;
+    private javax.swing.JScrollPane pnlTablaInformacionTraslado;
+    private javax.swing.JTable tblInformacionTraslado;
     // End of variables declaration//GEN-END:variables
 }

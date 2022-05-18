@@ -5,8 +5,8 @@
 package daos;
 
 import java.util.List;
-import objetosNegocio.Quimico;
-import objetosNegocio.Residuo;
+import entidades.Quimico;
+import entidades.Residuo;
 
 /**
  *

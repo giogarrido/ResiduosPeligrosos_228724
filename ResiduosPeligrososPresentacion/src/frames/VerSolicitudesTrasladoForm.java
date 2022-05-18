@@ -35,19 +35,75 @@ public class VerSolicitudesTrasladoForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblAsignarTrasladoEmpresa = new javax.swing.JLabel();
+        pnlTablaAsignarTraslado = new javax.swing.JScrollPane();
+        tblAsignarTraslado = new javax.swing.JTable();
+        btnAsignarTraslado = new javax.swing.JButton();
+
+        lblAsignarTrasladoEmpresa.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblAsignarTrasladoEmpresa.setText("Asignar Traslado a Empresa");
+
+        tblAsignarTraslado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null}
+            },
+            new String [] {
+                "Productor", "Fecha", "Residuo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        pnlTablaAsignarTraslado.setViewportView(tblAsignarTraslado);
+
+        btnAsignarTraslado.setText("Asignar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAsignarTraslado)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(267, 267, 267)
+                            .addComponent(lblAsignarTrasladoEmpresa))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(203, 203, 203)
+                            .addComponent(pnlTablaAsignarTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(212, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lblAsignarTrasladoEmpresa)
+                .addGap(90, 90, 90)
+                .addComponent(pnlTablaAsignarTraslado, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(btnAsignarTraslado)
+                .addGap(45, 45, 45))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAsignarTraslado;
+    private javax.swing.JLabel lblAsignarTrasladoEmpresa;
+    private javax.swing.JScrollPane pnlTablaAsignarTraslado;
+    private javax.swing.JTable tblAsignarTraslado;
     // End of variables declaration//GEN-END:variables
 }

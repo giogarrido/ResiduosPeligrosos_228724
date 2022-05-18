@@ -6,7 +6,7 @@ package frames;
 
 import controlResiduosPeligrosos.FabricaN;
 import controlResiduosPeligrosos.INegocio;
-import objetosNegocio.Quimico;
+import entidades.Quimico;
 
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
