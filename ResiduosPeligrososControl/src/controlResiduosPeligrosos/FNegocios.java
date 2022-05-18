@@ -4,6 +4,7 @@
  */
 package controlResiduosPeligrosos;
 
+import entidades.Productor;
 import java.util.List;
 import entidades.Quimico;
 import entidades.Residuo;
@@ -16,6 +17,7 @@ public class FNegocios implements INegocio{
     
     private ControlQuimicos controlQuimicos;
     private ControlResiduos controlResiduos;
+    private ControlProductores controlProductores;
 
     public FNegocios() {
     }
@@ -36,6 +38,15 @@ public class FNegocios implements INegocio{
         }else{
             this.controlResiduos = new ControlResiduos();
             return this.controlResiduos;
+        }
+    }
+    
+    private ControlProductores getControlProductores(){
+        if (this.controlProductores!= null){
+            return controlProductores;
+        }else{
+            this.controlProductores = new ControlProductores();
+            return this.controlProductores;
         }
     }
 
@@ -88,6 +99,22 @@ public class FNegocios implements INegocio{
     public boolean consultarExisteNombreResiduo(String nombreConsultar) {
         return this.getControlResiduos().consultarExisteNombreResiduo(nombreConsultar);
 
+    }
+
+    @Override
+    public boolean agregarProductor(Productor productor) {
+        return this.getControlProductores().agregarProductor(productor);
+
+    }
+
+    @Override
+    public List<Productor> consultarTodosProductores() {
+        return this.getControlProductores().consultarTodosProductores();
+    }
+
+    @Override
+    public boolean consultarExisteNombreProductor(String nombreConsultar) {
+        return this.getControlProductores().consultarExisteNombreProductor(nombreConsultar);
     }
     
 }

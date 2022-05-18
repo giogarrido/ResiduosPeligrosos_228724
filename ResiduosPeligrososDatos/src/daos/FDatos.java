@@ -4,6 +4,7 @@
  */
 package daos;
 
+import entidades.Productor;
 import java.util.List;
 import entidades.Quimico;
 import entidades.Residuo;
@@ -16,6 +17,7 @@ public class FDatos implements IDatos{
 
     private QuimicosDAO quimicosDAO;
     private ResiduosDAO residuosDAO;
+    private ProductorDAO productorDAO;
     
     private QuimicosDAO getQuimicosDAO(){
         if(this.quimicosDAO!=null){
@@ -32,6 +34,15 @@ public class FDatos implements IDatos{
         }else{
             this.residuosDAO = new ResiduosDAO();
             return this.residuosDAO;
+        }
+    }
+    
+    private ProductorDAO getProductoresDAO(){
+        if(this.productorDAO!=null){
+            return productorDAO;
+        }else{
+            this.productorDAO = new ProductorDAO();
+            return this.productorDAO;
         }
     }
 
@@ -72,6 +83,22 @@ public class FDatos implements IDatos{
     public boolean consultarExisteNombreResiduo(String nombreConsultar) {
         return this.getResiduosDAO().consultarExisteNombre(nombreConsultar);
 
+    }
+
+    @Override
+    public boolean agregarProductor(Productor productor) {
+        return this.getProductoresDAO().agregar(productor);
+    }
+
+    @Override
+    public List<Productor> consultarTodosProductores() {
+        return this.getProductoresDAO().consultarTodos();
+    }
+
+    @Override
+    public boolean consultarExisteNombreProductor(String nombreConsultar) {
+
+        return this.getProductoresDAO().consultarExisteNombre(nombreConsultar);
     }
    
     

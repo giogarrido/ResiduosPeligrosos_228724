@@ -7,71 +7,63 @@ package daos;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
-import entidades.Quimico;
+import entidades.Productor;
 import java.util.LinkedList;
 import java.util.List;
-
 
 /**
  *
  * @author giova
  */
-public class QuimicosDAO extends DAOsBase<Quimico> {
-
+public class ProductorDAO extends DAOsBase<Productor>{
+    
     private MongoDatabase baseDatos;
-
-    public QuimicosDAO() {
-
-        this.baseDatos = ConexionBD.getConexionBD();
+    
+    public ProductorDAO(){
+        this.baseDatos=ConexionBD.getConexionBD();
     }
-
+    
     private MongoCollection getColeccion() {
-        return this.baseDatos.getCollection("quimicos", Quimico.class);
+        return this.baseDatos.getCollection("productores", Productor.class);
     }
 
     @Override
-    public boolean agregar(Quimico quimico) {
-
+    protected boolean agregar(Productor productor) {
         try {
-            MongoCollection<Quimico> coleccion = this.getColeccion();
-            coleccion.insertOne(quimico);
+            MongoCollection<Productor> coleccion = this.getColeccion();
+            coleccion.insertOne(productor);
             return true;
         } catch (IllegalStateException ex) {
-            System.err.println("No se pudeo agregar el quimico");
+            System.err.println("No se pudeo agregar el productor");
             ex.printStackTrace();
             return false;
-        }
-    }
+        }}
 
     @Override
-    public List<Quimico> consultarTodos() {
-
+    protected List<Productor> consultarTodos() {
         try {
-            MongoCollection<Quimico> coleccion = this.getColeccion();
-            List<Quimico> listaQuimicos = new LinkedList<>();
-            coleccion.find().into(listaQuimicos);
-            return listaQuimicos;
+            MongoCollection<Productor> coleccion = this.getColeccion();
+            List<Productor> listaProductores = new LinkedList<>();
+            coleccion.find().into(listaProductores);
+            return listaProductores;
         } catch (IllegalStateException ex) {
-            System.err.println("No se pudieron consultar los quimicos ");
+            System.err.println("No se pudieron consultar los productores ");
             ex.printStackTrace();
             return null;
-        }
-
-    }
+        }}
 
     @Override
     protected boolean consultarExisteNombre(String nombreConsultar) {
         boolean existe=true;
-        Quimico quimico=null;
+        Productor quimico=null;
 
-        MongoCollection<Quimico> coleccion = this.getColeccion();
+        MongoCollection<Productor> coleccion = this.getColeccion();
         quimico = coleccion.find(eq("nombre", nombreConsultar)).first();
 
         if(quimico==null){
             existe=false;
         }
         return existe;
-
     }
-
+    
 }

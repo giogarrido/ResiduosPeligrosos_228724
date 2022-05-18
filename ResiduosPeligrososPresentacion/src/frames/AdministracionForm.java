@@ -6,6 +6,7 @@ package frames;
 
 import controlResiduosPeligrosos.FabricaN;
 import controlResiduosPeligrosos.INegocio;
+import entidades.Productor;
 import entidades.Quimico;
 
 import java.awt.CardLayout;
@@ -40,6 +41,7 @@ public class AdministracionForm extends javax.swing.JFrame {
         lblRegistrar = new javax.swing.JLabel();
         btnRegAdministrador = new javax.swing.JButton();
         btnSaliRegistro = new javax.swing.JButton();
+        btnRegVehiculo = new javax.swing.JButton();
         pnlRegQuimico = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         btnAgregarQuimico = new javax.swing.JButton();
@@ -49,9 +51,9 @@ public class AdministracionForm extends javax.swing.JFrame {
         pnlRegproductor = new javax.swing.JPanel();
         lblRegistrarProductor = new javax.swing.JLabel();
         lblNombreRegProductor = new javax.swing.JLabel();
-        btnNombreRegProductor = new javax.swing.JTextField();
+        txtNombreRegProductor = new javax.swing.JTextField();
         lblContraseniaRegProductor = new javax.swing.JLabel();
-        btnContraseniaRegProductor = new javax.swing.JTextField();
+        txtContraseniaRegProductor = new javax.swing.JTextField();
         btnAgregarProductor = new javax.swing.JButton();
         btnSalirProductor = new javax.swing.JButton();
         pnlRegTransporte = new javax.swing.JPanel();
@@ -70,20 +72,31 @@ public class AdministracionForm extends javax.swing.JFrame {
         txtContraseniaRegAdministrador = new javax.swing.JTextField();
         btnAgregarRegAdministrador = new javax.swing.JButton();
         btnSalirRegvAdministrador = new javax.swing.JButton();
+        pnlRegVehiculo = new javax.swing.JPanel();
+        lblRegistroVehiculos = new javax.swing.JLabel();
+        lblTransportistaRegVh = new javax.swing.JLabel();
+        cmbTransportistaRegVh = new javax.swing.JComboBox<>();
+        lblTipoVehiculoRegVh = new javax.swing.JLabel();
+        txtTipoVehiculoRegVh = new javax.swing.JTextField();
+        lblPlacasRegVh = new javax.swing.JLabel();
+        txtPlacasRegVh = new javax.swing.JTextField();
+        btnGuardarRegVh = new javax.swing.JButton();
+        btnSalirRegVh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Administración");
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        btnRegProductor.setText("Productor");
         btnRegProductor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnRegProductor.setText("Productor");
         btnRegProductor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegProductorActionPerformed(evt);
             }
         });
 
-        btnRegTransporte.setText("Transporte");
         btnRegTransporte.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnRegTransporte.setText("Transporte");
         btnRegTransporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegTransporteActionPerformed(evt);
@@ -98,23 +111,31 @@ public class AdministracionForm extends javax.swing.JFrame {
             }
         });
 
-        lblRegistrar.setText("Registrar:");
         lblRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblRegistrar.setText("Registrar:");
 
-        btnRegAdministrador.setText("Administrador");
         btnRegAdministrador.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnRegAdministrador.setText("Administrador");
         btnRegAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegAdministradorActionPerformed(evt);
             }
         });
 
+        btnSaliRegistro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSaliRegistro.setText("Salir");
-        btnSaliRegistro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSaliRegistro.setPreferredSize(new java.awt.Dimension(81, 26));
         btnSaliRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaliRegistroActionPerformed(evt);
+            }
+        });
+
+        btnRegVehiculo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnRegVehiculo.setText("Vehículo");
+        btnRegVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegVehiculoActionPerformed(evt);
             }
         });
 
@@ -123,40 +144,40 @@ public class AdministracionForm extends javax.swing.JFrame {
         pnlRegistroLayout.setHorizontalGroup(
             pnlRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRegistroLayout.createSequentialGroup()
-                .addGroup(pnlRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addComponent(lblRegistrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGroup(pnlRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlRegistroLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(lblRegistrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                        .addComponent(btnRegProductor, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlRegistroLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnlRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnRegAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRegTransporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRegQuimico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(49, 49, 49))
-            .addGroup(pnlRegistroLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(btnSaliRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnSaliRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRegistroLayout.createSequentialGroup()
+                        .addGroup(pnlRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRegTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegAdministrador)
+                            .addComponent(btnRegProductor, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegQuimico, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49))))
         );
         pnlRegistroLayout.setVerticalGroup(
             pnlRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRegistroLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
                 .addGroup(pnlRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRegistrar)
-                    .addComponent(btnRegProductor))
+                    .addComponent(btnRegQuimico))
                 .addGap(18, 18, 18)
-                .addComponent(btnRegTransporte)
-                .addGap(18, 18, 18)
-                .addComponent(btnRegQuimico)
+                .addComponent(btnRegProductor)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegAdministrador)
                 .addGap(18, 18, 18)
+                .addComponent(btnRegTransporte)
+                .addGap(18, 18, 18)
+                .addComponent(btnRegVehiculo)
+                .addGap(18, 18, 18)
                 .addComponent(btnSaliRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnlRegistro, "registro");
@@ -164,16 +185,16 @@ public class AdministracionForm extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitulo.setText("Registro de Quimico");
 
-        btnAgregarQuimico.setText("Agregar");
         btnAgregarQuimico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAgregarQuimico.setText("Agregar");
         btnAgregarQuimico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarQuimicoActionPerformed(evt);
             }
         });
 
-        btnSalirQuimico.setText("Salir");
         btnSalirQuimico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSalirQuimico.setText("Salir");
         btnSalirQuimico.setPreferredSize(new java.awt.Dimension(81, 26));
         btnSalirQuimico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,8 +202,8 @@ public class AdministracionForm extends javax.swing.JFrame {
             }
         });
 
-        lblNombreQuimico.setText("Nombre:");
         lblNombreQuimico.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblNombreQuimico.setText("Nombre:");
 
         txtNombreQuimico.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -225,39 +246,39 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         getContentPane().add(pnlRegQuimico, "regQuimico");
 
-        lblRegistrarProductor.setText("Registrar Productor");
         lblRegistrarProductor.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblRegistrarProductor.setText("Registrar Productor");
 
-        lblNombreRegProductor.setText("Nombre");
         lblNombreRegProductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNombreRegProductor.setText("Nombre");
 
-        btnNombreRegProductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnNombreRegProductor.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreRegProductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtNombreRegProductor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNombreRegProductorActionPerformed(evt);
+                txtNombreRegProductorActionPerformed(evt);
             }
         });
 
-        lblContraseniaRegProductor.setText("Contraseña");
         lblContraseniaRegProductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblContraseniaRegProductor.setText("Contraseña");
 
-        btnContraseniaRegProductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnContraseniaRegProductor.addActionListener(new java.awt.event.ActionListener() {
+        txtContraseniaRegProductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtContraseniaRegProductor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContraseniaRegProductorActionPerformed(evt);
+                txtContraseniaRegProductorActionPerformed(evt);
             }
         });
 
-        btnAgregarProductor.setText("Agregar");
         btnAgregarProductor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAgregarProductor.setText("Agregar");
         btnAgregarProductor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarProductorActionPerformed(evt);
             }
         });
 
-        btnSalirProductor.setText("Salir");
         btnSalirProductor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSalirProductor.setText("Salir");
         btnSalirProductor.setPreferredSize(new java.awt.Dimension(81, 26));
         btnSalirProductor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,8 +307,8 @@ public class AdministracionForm extends javax.swing.JFrame {
                                     .addComponent(lblContraseniaRegProductor))
                                 .addGap(18, 18, 18)
                                 .addGroup(pnlRegproductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnContraseniaRegProductor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnNombreRegProductor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(txtContraseniaRegProductor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombreRegProductor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         pnlRegproductorLayout.setVerticalGroup(
@@ -298,11 +319,11 @@ public class AdministracionForm extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(pnlRegproductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombreRegProductor)
-                    .addComponent(btnNombreRegProductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombreRegProductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(pnlRegproductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContraseniaRegProductor)
-                    .addComponent(btnContraseniaRegProductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContraseniaRegProductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(pnlRegproductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalirProductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,14 +333,14 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         getContentPane().add(pnlRegproductor, "regProductor");
 
-        lblRegistrarTransportista.setText("Registro de Trasportista");
         lblRegistrarTransportista.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblRegistrarTransportista.setText("Registro de Trasportista");
 
-        lblNombreRegTransportista.setText("Nombre:");
         lblNombreRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombreRegTransportista.setText("Nombre:");
 
-        lblContraseniaRegTransportista.setText("Contraseña");
         lblContraseniaRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblContraseniaRegTransportista.setText("Contraseña");
 
         txtNombreRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombreRegTransportista.addActionListener(new java.awt.event.ActionListener() {
@@ -330,11 +351,11 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         txtContraseniaRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        btnAgregarRegTransportista.setText("Agregar");
         btnAgregarRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAgregarRegTransportista.setText("Agregar");
 
-        btnSalirRegTransportista.setText("Salir");
         btnSalirRegTransportista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSalirRegTransportista.setText("Salir");
         btnSalirRegTransportista.setPreferredSize(new java.awt.Dimension(81, 26));
         btnSalirRegTransportista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -386,14 +407,14 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         getContentPane().add(pnlRegTransporte, "regTransporte");
 
-        lblRegistrarAdministrador.setText("Registro de Administrador");
         lblRegistrarAdministrador.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        lblRegistrarAdministrador.setText("Registro de Administrador");
 
-        lblNombreRegAdministrador.setText("Nombre:");
         lblNombreRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNombreRegAdministrador.setText("Nombre:");
 
-        lblContraseniaRegAdministrador.setText("Contraseña");
         lblContraseniaRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblContraseniaRegAdministrador.setText("Contraseña");
 
         txtNombreRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNombreRegAdministrador.addActionListener(new java.awt.event.ActionListener() {
@@ -404,12 +425,17 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         txtContraseniaRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        btnAgregarRegAdministrador.setText("Agregar");
         btnAgregarRegAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAgregarRegAdministrador.setText("Agregar");
 
-        btnSalirRegvAdministrador.setText("Salir");
         btnSalirRegvAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSalirRegvAdministrador.setText("Salir");
         btnSalirRegvAdministrador.setPreferredSize(new java.awt.Dimension(81, 26));
+        btnSalirRegvAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirRegvAdministradorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlRegAdministradorLayout = new javax.swing.GroupLayout(pnlRegAdministrador);
         pnlRegAdministrador.setLayout(pnlRegAdministradorLayout);
@@ -455,6 +481,89 @@ public class AdministracionForm extends javax.swing.JFrame {
 
         getContentPane().add(pnlRegAdministrador, "regAdministrador");
 
+        pnlRegVehiculo.setPreferredSize(new java.awt.Dimension(430, 332));
+
+        lblRegistroVehiculos.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        lblRegistroVehiculos.setText("Registro de Vehículos");
+
+        lblTransportistaRegVh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTransportistaRegVh.setText("Transportista:");
+
+        lblTipoVehiculoRegVh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTipoVehiculoRegVh.setText("Tipo de Vehículo:");
+
+        txtTipoVehiculoRegVh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTipoVehiculoRegVhActionPerformed(evt);
+            }
+        });
+
+        lblPlacasRegVh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPlacasRegVh.setText("Placas:");
+
+        btnGuardarRegVh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGuardarRegVh.setText("Guardar");
+
+        btnSalirRegVh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSalirRegVh.setText("Salir");
+        btnSalirRegVh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirRegVhActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlRegVehiculoLayout = new javax.swing.GroupLayout(pnlRegVehiculo);
+        pnlRegVehiculo.setLayout(pnlRegVehiculoLayout);
+        pnlRegVehiculoLayout.setHorizontalGroup(
+            pnlRegVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRegVehiculoLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(pnlRegVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlRegVehiculoLayout.createSequentialGroup()
+                        .addGroup(pnlRegVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTipoVehiculoRegVh)
+                            .addComponent(lblTransportistaRegVh)
+                            .addComponent(lblPlacasRegVh))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlRegVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cmbTransportistaRegVh, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtTipoVehiculoRegVh, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPlacasRegVh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlRegVehiculoLayout.createSequentialGroup()
+                                .addComponent(btnGuardarRegVh)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSalirRegVh))))
+                    .addComponent(lblRegistroVehiculos))
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+        pnlRegVehiculoLayout.setVerticalGroup(
+            pnlRegVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRegVehiculoLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(lblRegistroVehiculos)
+                .addGap(53, 53, 53)
+                .addGroup(pnlRegVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlRegVehiculoLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(lblTransportistaRegVh))
+                    .addComponent(cmbTransportistaRegVh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(pnlRegVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTipoVehiculoRegVh)
+                    .addComponent(txtTipoVehiculoRegVh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlRegVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPlacasRegVh)
+                    .addComponent(txtPlacasRegVh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(pnlRegVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardarRegVh)
+                    .addComponent(btnSalirRegVh))
+                .addGap(44, 44, 44))
+        );
+
+        getContentPane().add(pnlRegVehiculo, "regVehiculo");
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -495,16 +604,16 @@ public class AdministracionForm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnSaliRegistroActionPerformed
 
-    private void btnNombreRegProductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNombreRegProductorActionPerformed
+    private void txtNombreRegProductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreRegProductorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnNombreRegProductorActionPerformed
+    }//GEN-LAST:event_txtNombreRegProductorActionPerformed
 
-    private void btnContraseniaRegProductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContraseniaRegProductorActionPerformed
+    private void txtContraseniaRegProductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaRegProductorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnContraseniaRegProductorActionPerformed
+    }//GEN-LAST:event_txtContraseniaRegProductorActionPerformed
 
     private void btnAgregarProductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductorActionPerformed
-        // TODO add your handling code here:
+    agregarProductor();
     }//GEN-LAST:event_btnAgregarProductorActionPerformed
 
     private void btnSalirProductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirProductorActionPerformed
@@ -530,6 +639,24 @@ public class AdministracionForm extends javax.swing.JFrame {
         regresar();
     }//GEN-LAST:event_btnSalirRegTransportistaActionPerformed
 
+    private void btnSalirRegvAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirRegvAdministradorActionPerformed
+        regresar();
+    }//GEN-LAST:event_btnSalirRegvAdministradorActionPerformed
+
+    private void btnRegVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegVehiculoActionPerformed
+        CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
+        cl.show(this.getContentPane(), "regVehiculo");
+        this.setTitle("Registro de Vehículo");
+    }//GEN-LAST:event_btnRegVehiculoActionPerformed
+
+    private void txtTipoVehiculoRegVhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoVehiculoRegVhActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTipoVehiculoRegVhActionPerformed
+
+    private void btnSalirRegVhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirRegVhActionPerformed
+        regresar();
+    }//GEN-LAST:event_btnSalirRegVhActionPerformed
+
     private void regresar() {
         CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
         cl.show(this.getContentPane(), "registro");
@@ -538,6 +665,11 @@ public class AdministracionForm extends javax.swing.JFrame {
 
     private void limpiarQumico() {
         txtNombreQuimico.setText("");
+    }
+    
+    private void limpiarProductor(){
+        txtNombreRegProductor.setText("");
+        txtContraseniaRegProductor.setText("");
     }
 
     private void agregarQuimico() {
@@ -562,6 +694,30 @@ public class AdministracionForm extends javax.swing.JFrame {
         }
 
     }
+    
+    private void agregarProductor() {
+        String nombreProductor = this.txtNombreRegProductor.getText().toUpperCase();
+        String contrasenia = this.txtContraseniaRegProductor.getText();
+        if (!campoVacio(nombreProductor)) {
+
+            if (negocio.consultarExisteNombreProductor(nombreProductor)) {
+                JOptionPane.showMessageDialog(this, "El Productor ya existe", "error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                   Productor productor = new Productor(nombreProductor, contrasenia);
+                boolean seAgrego = negocio.agregarProductor(productor);
+                if (seAgrego) {
+                    JOptionPane.showMessageDialog(this, "Se registro el productor", "información", JOptionPane.INFORMATION_MESSAGE);
+                    this.limpiarProductor();
+                } else {
+                    JOptionPane.showMessageDialog(this, "No fue posible registrar al productor", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "información", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }
 
     private boolean campoVacio(String campo) {
         int tamañoCampo = campo.length();
@@ -577,17 +733,19 @@ public class AdministracionForm extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarQuimico;
     private javax.swing.JButton btnAgregarRegAdministrador;
     private javax.swing.JButton btnAgregarRegTransportista;
-    private javax.swing.JTextField btnContraseniaRegProductor;
-    private javax.swing.JTextField btnNombreRegProductor;
+    private javax.swing.JButton btnGuardarRegVh;
     private javax.swing.JButton btnRegAdministrador;
     private javax.swing.JButton btnRegProductor;
     private javax.swing.JButton btnRegQuimico;
     private javax.swing.JButton btnRegTransporte;
+    private javax.swing.JButton btnRegVehiculo;
     private javax.swing.JButton btnSaliRegistro;
     private javax.swing.JButton btnSalirProductor;
     private javax.swing.JButton btnSalirQuimico;
     private javax.swing.JButton btnSalirRegTransportista;
+    private javax.swing.JButton btnSalirRegVh;
     private javax.swing.JButton btnSalirRegvAdministrador;
+    private javax.swing.JComboBox<String> cmbTransportistaRegVh;
     private javax.swing.JLabel lblContraseniaRegAdministrador;
     private javax.swing.JLabel lblContraseniaRegProductor;
     private javax.swing.JLabel lblContraseniaRegTransportista;
@@ -595,21 +753,30 @@ public class AdministracionForm extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombreRegAdministrador;
     private javax.swing.JLabel lblNombreRegProductor;
     private javax.swing.JLabel lblNombreRegTransportista;
+    private javax.swing.JLabel lblPlacasRegVh;
     private javax.swing.JLabel lblRegistrar;
     private javax.swing.JLabel lblRegistrarAdministrador;
     private javax.swing.JLabel lblRegistrarProductor;
     private javax.swing.JLabel lblRegistrarTransportista;
+    private javax.swing.JLabel lblRegistroVehiculos;
+    private javax.swing.JLabel lblTipoVehiculoRegVh;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTransportistaRegVh;
     private javax.swing.JPanel pnlRegAdministrador;
     private javax.swing.JPanel pnlRegQuimico;
     private javax.swing.JPanel pnlRegTransporte;
+    private javax.swing.JPanel pnlRegVehiculo;
     private javax.swing.JPanel pnlRegistro;
     private javax.swing.JPanel pnlRegproductor;
     private javax.swing.JTextField txtContraseniaRegAdministrador;
+    private javax.swing.JTextField txtContraseniaRegProductor;
     private javax.swing.JTextField txtContraseniaRegTransportista;
     private javax.swing.JTextField txtNombreQuimico;
     private javax.swing.JTextField txtNombreRegAdministrador;
+    private javax.swing.JTextField txtNombreRegProductor;
     private javax.swing.JTextField txtNombreRegTransportista;
+    private javax.swing.JTextField txtPlacasRegVh;
+    private javax.swing.JTextField txtTipoVehiculoRegVh;
     // End of variables declaration//GEN-END:variables
 
 }

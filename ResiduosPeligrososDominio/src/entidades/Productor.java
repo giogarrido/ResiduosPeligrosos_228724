@@ -18,6 +18,12 @@ public class Productor extends Empresa{
     public Productor() {
     }
 
+    public Productor(String nombre, String contrasenia) {
+        super(nombre, contrasenia);
+    }
+    
+    
+
     public Productor(String nombre, String contrasenia,List<Residuo> residuos) {
         super(nombre, contrasenia);
         this.residuos = residuos;
