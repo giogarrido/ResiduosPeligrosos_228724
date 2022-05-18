@@ -4,9 +4,11 @@ package daos;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.set;
 import entidades.Transporte;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -62,5 +64,14 @@ public class TransportesDAO extends DAOsBase<Transporte>{
         }
         return existe;
     }
+    
+//    protected boolean agregarIdsVehiculo(String nombre, ObjectId idVehiculo){
+//        MongoCollection<Transporte> coleccion = this.getColeccion();
+//        coleccion.updateOne(
+//                eq("nombre",nombre),
+//                combine(set"idsVehiculos",)
+//        
+//          );
+//    }
     
 }

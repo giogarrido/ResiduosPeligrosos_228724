@@ -4,7 +4,9 @@
  */
 package entidades;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import org.bson.types.ObjectId;
 
 /**
@@ -12,7 +14,7 @@ import org.bson.types.ObjectId;
  * @author giova
  */
 public class Transporte extends Empresa{
-    private List<Vehiculo> vehiculos;
+    private List<ObjectId> idsVehiculos;
 
     public Transporte() {
     }
@@ -25,22 +27,22 @@ public class Transporte extends Empresa{
         super(id, nombre, contrasenia);
     }
 
-    public Transporte(List<Vehiculo> vehiculos, ObjectId id, String nombre, String contrasenia) {
+    public Transporte(List<ObjectId> idsVehiculos, ObjectId id, String nombre, String contrasenia) {
         super(id, nombre, contrasenia);
-        this.vehiculos = vehiculos;
+        this.idsVehiculos = idsVehiculos;
     }
 
-    public Transporte(List<Vehiculo> vehiculos, String nombre, String contrasenia) {
+    public Transporte(List<ObjectId> idsVehiculos, String nombre, String contrasenia) {
         super(nombre, contrasenia);
-        this.vehiculos = vehiculos;
+        this.idsVehiculos = idsVehiculos;
     }
 
-    public List<Vehiculo> getVehiculos() {
-        return vehiculos;
+    public List<ObjectId> getIdsVehiculos() {
+        return idsVehiculos;
     }
 
-    public void setVehiculos(List<Vehiculo> vehiculos) {
-        this.vehiculos = vehiculos;
+    public void setIdsVehiculos(List<ObjectId> idsVehiculos) {
+        this.idsVehiculos = idsVehiculos;
     }
 
     public ObjectId getId() {
@@ -66,12 +68,42 @@ public class Transporte extends Empresa{
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
+    
+    public void addIdsVehiculos(ObjectId idVehiculo){
+        if(this.idsVehiculos == null){
+            this.idsVehiculos = new ArrayList<>();
+        }
+        this.idsVehiculos.add(idVehiculo);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 19 * hash + Objects.hashCode(this.idsVehiculos);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Transporte other = (Transporte) obj;
+        return Objects.equals(this.idsVehiculos, other.idsVehiculos);
+    }
 
     @Override
     public String toString() {
         return nombre;
-
     }
+
+
     
     
 }
