@@ -4,16 +4,19 @@
  */
 package entidades;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import org.bson.types.ObjectId;
 
 /**
  *
  * @author giova
  */
-public class Productor extends Empresa{
-    
-    private List<Residuo>residuos;
+public class Productor extends Empresa {
+
+    private ObjectId id;
+    private List<ObjectId> idsResiduos;
 
     public Productor() {
     }
@@ -21,36 +24,89 @@ public class Productor extends Empresa{
     public Productor(String nombre, String contrasenia) {
         super(nombre, contrasenia);
     }
-    
-    
 
-    public Productor(String nombre, String contrasenia,List<Residuo> residuos) {
+    public Productor(ObjectId id, String nombre, String contrasenia) {
         super(nombre, contrasenia);
-        this.residuos = residuos;
+        this.id = id;
     }
 
-    public Productor( ObjectId id, String nombre, String contrasenia, List<Residuo> residuos) {
-        super(id, nombre, contrasenia);
-        this.residuos = residuos;
+    public Productor(List<ObjectId> idsResiduos, String nombre, String contrasenia) {
+        super(nombre, contrasenia);
+        this.idsResiduos = idsResiduos;
     }
 
-    public List<Residuo> getResiduos() {
-        return residuos;
+    public Productor(ObjectId id, List<ObjectId> idsResiduos, String nombre, String contrasenia) {
+        super(nombre, contrasenia);
+        this.id = id;
+        this.idsResiduos = idsResiduos;
     }
 
-    public void setResiduos(List<Residuo> residuos) {
-        this.residuos = residuos;
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    public List<ObjectId> getIdsResiduos() {
+        return idsResiduos;
+    }
+
+    public void setIdsResiduos(List<ObjectId> idsResiduos) {
+        this.idsResiduos = idsResiduos;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+
+    public void addIdsResiduos(ObjectId idResiduo) {
+        if (this.idsResiduos == null) {
+            this.idsResiduos = new ArrayList<>();
+        }
+        this.idsResiduos.add(idResiduo);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Productor other = (Productor) obj;
+        return Objects.equals(this.id, other.id);
     }
 
     @Override
     public String toString() {
-        return id + nombre;
+        return nombre +" Productor{" + "id=" + id + ", idsResiduos=" + idsResiduos + '}';
     }
+    
+    
 
-
-    
-    
-    
-    
-    
 }

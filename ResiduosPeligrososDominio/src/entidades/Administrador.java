@@ -4,6 +4,7 @@
  */
 package entidades;
 
+import java.util.Objects;
 import org.bson.types.ObjectId;
 
 /**
@@ -11,6 +12,8 @@ import org.bson.types.ObjectId;
  * @author giova
  */
 public class Administrador extends Empresa{
+    
+    private ObjectId id;
 
     public Administrador() {
     }
@@ -20,7 +23,8 @@ public class Administrador extends Empresa{
     }
 
     public Administrador(ObjectId id, String nombre, String contrasenia) {
-        super(id, nombre, contrasenia);
+        super(nombre, contrasenia);
+        this.id = id;
     }
 
     public ObjectId getId() {
@@ -46,6 +50,35 @@ public class Administrador extends Empresa{
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Administrador other = (Administrador) obj;
+        return Objects.equals(this.id, other.id);
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " Administrador{" + "id=" + id + '}';
+    }
+    
+    
     
     
     

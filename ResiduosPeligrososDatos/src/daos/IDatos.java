@@ -45,11 +45,15 @@ public interface IDatos {
 //CONCULTAR SI EXISTE CLAVE RESIDUO
      public boolean consultarExisteClaveResiduo(Integer clave);
      
-     //Consultar IDvehiuculo
+     //Consultar ID
      public ObjectId obtenerIDVehiculo(String placa);
+     public ObjectId obtenerIDResiduo(String nombre);
      
      //AGREGAR VEHICULO A TRANSPORTISTA
      public boolean agregarIdsVehiculo(String nombre, ObjectId idVehiculo);
+     
+     //AGREGAR RESIDUOS A PRODUCTOR
+     public boolean agregarIdsResiduos(String nombre, ObjectId idResiduo);
 
 
 }

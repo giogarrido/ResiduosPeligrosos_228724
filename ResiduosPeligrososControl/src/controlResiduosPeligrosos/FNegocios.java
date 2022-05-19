@@ -209,6 +209,18 @@ public class FNegocios implements INegocio{
 
     }
 
+    @Override
+    public ObjectId obtenerIDResiduo(String nombre) {
+        return this.getControlResiduos().obtenerIDResiduo(nombre);
+
+    }
+
+    @Override
+    public boolean agregarIdsResiduos(String nombre, ObjectId idResiduo) {
+    
+        return this.getControlProductores().agregarIdsResiduos(nombre, idResiduo);
+    }
+
 
         
     

@@ -191,6 +191,16 @@ public class FDatos implements IDatos{
         return this.getTransportesDAO().agregarIdsVehiculo(nombre, idVehiculo);
 
     }
+
+    @Override
+    public ObjectId obtenerIDResiduo(String nombre) {
+        return this.getResiduosDAO().obtenerIDResiduo(nombre);
+    }
+
+    @Override
+    public boolean agregarIdsResiduos(String nombre, ObjectId idResiduo) {
+        return this.getProductoresDAO().agregarIdsResiduos(nombre, idResiduo);
+    }
    
     
     

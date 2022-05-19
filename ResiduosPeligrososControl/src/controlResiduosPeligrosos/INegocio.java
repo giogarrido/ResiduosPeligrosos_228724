@@ -46,9 +46,15 @@ public interface INegocio {
     
      //CONCULTAR SI EXISTE CLAVE RESIDUO
      public boolean consultarExisteClave(Integer claveConsultar);
+     
+     //OBTERNER ID
      public ObjectId obtenerIDVehiculo(String placa);
+     public ObjectId obtenerIDResiduo(String nombre);
      
      //AGREGAR ID VEHICULOS
      public boolean agregarIdsVehiculo(String nombre, ObjectId idVehiculo);
+     
+     //AGREGAR ID RESIDUOS
+     public boolean agregarIdsResiduos(String nombre, ObjectId idResiduo);
 
 }

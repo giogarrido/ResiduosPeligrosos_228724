@@ -5,6 +5,7 @@ import daos.FabricaD;
 import daos.IDatos;
 import entidades.Productor;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -23,6 +24,10 @@ public class ControlProductores {
     
     public boolean consultarExisteNombreProductor(String nombreConsultar){
         return this.datos.consultarExisteNombreProductor(nombreConsultar);
+    }
+    
+    public boolean  agregarIdsResiduos(String nombre, ObjectId idResiduo){
+        return this.datos.agregarIdsResiduos(nombre, idResiduo);
     }
     
     

@@ -14,6 +14,8 @@ import org.bson.types.ObjectId;
  * @author giova
  */
 public class Transporte extends Empresa{
+    
+    private ObjectId id;
     private List<ObjectId> idsVehiculos;
 
     public Transporte() {
@@ -23,25 +25,14 @@ public class Transporte extends Empresa{
         super(nombre, contrasenia);
     }
 
-    public Transporte(ObjectId id, String nombre, String contrasenia) {
-        super(id, nombre, contrasenia);
-    }
-
-    public Transporte(List<ObjectId> idsVehiculos, ObjectId id, String nombre, String contrasenia) {
-        super(id, nombre, contrasenia);
-        this.idsVehiculos = idsVehiculos;
-    }
-
     public Transporte(List<ObjectId> idsVehiculos, String nombre, String contrasenia) {
         super(nombre, contrasenia);
         this.idsVehiculos = idsVehiculos;
     }
 
-    public List<ObjectId> getIdsVehiculos() {
-        return idsVehiculos;
-    }
-
-    public void setIdsVehiculos(List<ObjectId> idsVehiculos) {
+    public Transporte(ObjectId id, List<ObjectId> idsVehiculos, String nombre, String contrasenia) {
+        super(nombre, contrasenia);
+        this.id = id;
         this.idsVehiculos = idsVehiculos;
     }
 
@@ -51,6 +42,14 @@ public class Transporte extends Empresa{
 
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public List<ObjectId> getIdsVehiculos() {
+        return idsVehiculos;
+    }
+
+    public void setIdsVehiculos(List<ObjectId> idsVehiculos) {
+        this.idsVehiculos = idsVehiculos;
     }
 
     public String getNombre() {
@@ -78,8 +77,8 @@ public class Transporte extends Empresa{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 19 * hash + Objects.hashCode(this.idsVehiculos);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -95,13 +94,17 @@ public class Transporte extends Empresa{
             return false;
         }
         final Transporte other = (Transporte) obj;
-        return Objects.equals(this.idsVehiculos, other.idsVehiculos);
+        return Objects.equals(this.id, other.id);
     }
 
     @Override
     public String toString() {
-        return nombre+" Transporte{" + "idsVehiculos=" + idsVehiculos + '}';
+        return nombre + " Transporte{" + "id=" + id + ", idsVehiculos=" + idsVehiculos + '}';
     }
+    
+    
+
+
 
 
 

@@ -12,7 +12,7 @@ import org.bson.types.ObjectId;
  */
 public class Empresa {
     
-    protected ObjectId id;
+
     protected String nombre;
     protected String contrasenia;
 
@@ -22,20 +22,6 @@ public class Empresa {
     public Empresa(String nombre, String contrasenia) {
         this.nombre = nombre;
         this.contrasenia = contrasenia;
-    }
-
-    public Empresa(ObjectId id, String nombre, String contrasenia) {
-        this.id = id;
-        this.nombre = nombre;
-        this.contrasenia = contrasenia;
-    }
-
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -57,7 +43,7 @@ public class Empresa {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.nombre);
         return hash;
     }
 
@@ -73,20 +59,14 @@ public class Empresa {
             return false;
         }
         final Empresa other = (Empresa) obj;
-        return Objects.equals(this.id, other.id);
+        return Objects.equals(this.nombre, other.nombre);
     }
 
     @Override
     public String toString() {
-        return "Empresa{" + "id=" + id + ", nombre=" + nombre + ", contrasenia=" + contrasenia + '}';
+        return "Empresa{" + "nombre=" + nombre + ", contrasenia=" + contrasenia + '}';
     }
     
     
-    
-    
-    
 
-
-    
-    
 }

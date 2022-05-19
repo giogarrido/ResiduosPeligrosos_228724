@@ -10,6 +10,8 @@ import static com.mongodb.client.model.Filters.eq;
 import entidades.Productor;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -65,5 +67,24 @@ public class ProductorDAO extends DAOsBase<Productor>{
         }
         return existe;
     }
+    
+    
+    protected boolean agregarIdsResiduos(String nombre, ObjectId idResiduo){
+        Productor productor;
+        
+        MongoCollection<Productor> coleccion = this.getColeccion();
+        try{
+        productor = coleccion.find(eq("nombre", nombre)).first();
+        productor.addIdsResiduos(idResiduo);
+        coleccion.updateOne(eq("nombre",nombre),new Document("$set",new Document("idsResiduos",productor.getIdsResiduos())));
+
+        return true;
+        } catch (IllegalStateException ex) {
+            System.err.println("No se pudieron agregar los vehículos ");
+            ex.printStackTrace();
+            return false;
+    }
+    }
+    
     
 }

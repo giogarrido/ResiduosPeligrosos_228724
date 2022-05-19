@@ -4,12 +4,14 @@ import entidades.Quimico;
 import entidades.Residuo;
 import controlResiduosPeligrosos.FabricaN;
 import controlResiduosPeligrosos.INegocio;
+import entidades.Productor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.bson.types.ObjectId;
 import validores.Validadores;
 
 /**
@@ -24,6 +26,7 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
     private List<Quimico> listaQuimicosDisponibles;
     private List<Quimico> listaQuimicosRegistrados;
     private List<Quimico> listaQuimicosResiduo;
+    private List<Productor> listaProductores;
 
     private INegocio negocio = FabricaN.fabricaN();
 
@@ -41,6 +44,7 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
     public void cargarContenido() {
         initComponents();
         iniciarTablasResiduos();
+        llenarCajaProductores();
 
         this.llenarTablaQuimicoDisponible();
         //this.agregarQuimicoResiduo();
@@ -94,7 +98,7 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
 
     private void guardarResiduo() {
 
-        agregarResiduo();
+        agregarResiduoProductor();
 
     }
 
@@ -104,10 +108,23 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
         listaQuimicosDisponibles = new ArrayList<>();
     }
 
-    private void agregarResiduo() {
+    private void llenarCajaProductores() {
+        
+
+        listaProductores = negocio.consultarTodosProductores();
+
+        cmbProductorRegRes.addItem("Seleccione...");
+
+        for (int i = 0; i < listaProductores.size(); i++) {
+            cmbProductorRegRes.addItem(listaProductores.get(i).getNombre());
+        }
+
+    }
+
+    private void agregarResiduoProductor() {
 
         if (!validarCampoCodigo()) {
-            JOptionPane.showMessageDialog(this, "El codigo tiene que tener 6 digitos enteros", "Información", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El codigo tiene que tener 6 dígitos enteros", "Información", JOptionPane.ERROR_MESSAGE);
 
         } else {
             if (validarCamposLlenos()) {
@@ -123,8 +140,14 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
                         Residuo residuo = new Residuo(codigo, nombre, quimicos);
                         boolean seAgrego = negocio.agregarResiduo(residuo);
                         if (seAgrego) {
-                            JOptionPane.showMessageDialog(this, "Se agrego el quimico", "información", JOptionPane.INFORMATION_MESSAGE);
-                            limpiarPanelResiduo();
+                            String productorRes = cmbProductorRegRes.getSelectedItem().toString();
+                            ObjectId idRes = negocio.obtenerIDResiduo(nombre);
+                            boolean seAgregoRes = negocio.agregarIdsResiduos(productorRes, idRes);
+                            if (seAgregoRes) {
+                                JOptionPane.showMessageDialog(this, "Se registro el Residuo y se asignó al Productor", "información", JOptionPane.INFORMATION_MESSAGE);
+                                limpiarPanelResiduo();
+                            }
+
                         } else {
                             JOptionPane.showMessageDialog(this, "No fue posible agregar el quimico", "Error", JOptionPane.ERROR_MESSAGE);
                         }
@@ -145,6 +168,7 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
         llenarTablaQuimicoResiduo();
         txtCodigoResiduo.setText("");
         txtNombreResiduo.setText("");
+        cmbProductorRegRes.setSelectedIndex(0);
     }
 
     public void recargarRegistroResiduo() {
@@ -159,6 +183,9 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
             return false;
         }
         if (listaQuimicosResiduo.isEmpty()) {
+            return false;
+        }
+        if (cmbProductorRegRes.getSelectedItem().toString().equals("Seleccione...")){
             return false;
         }
         return true;
@@ -190,6 +217,8 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
         txtNombreResiduo = new javax.swing.JTextField();
         pnlTablaQuimicoResiduo = new javax.swing.JScrollPane();
         tblQuimicoResiduo = new javax.swing.JTable();
+        lblProductorRegRes = new javax.swing.JLabel();
+        cmbProductorRegRes = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(1000, 500));
 
@@ -283,6 +312,8 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
         });
         pnlTablaQuimicoResiduo.setViewportView(tblQuimicoResiduo);
 
+        lblProductorRegRes.setText("Productor: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -293,7 +324,7 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
                         .addGap(323, 323, 323)
                         .addComponent(lblRegistroResiduos))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
+                        .addGap(261, 261, 261)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(pnlTablaQuimicoDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,18 +344,27 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
                                 .addGap(181, 181, 181)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnEliminarRegistroResiduo)
-                                    .addComponent(btnGuardarResiduo))))))
-                .addContainerGap(248, Short.MAX_VALUE))
+                                    .addComponent(btnGuardarResiduo)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(lblProductorRegRes)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbProductorRegRes, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
                 .addComponent(lblRegistroResiduos)
-                .addGap(36, 36, 36)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblProductorRegRes)
+                    .addComponent(cmbProductorRegRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlTablaQuimicoDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlTablaQuimicoResiduo, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlTablaQuimicoDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlTablaQuimicoResiduo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEliminarRegistroResiduo)
@@ -338,7 +378,7 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
                     .addComponent(lblNombreResiduo)
                     .addComponent(txtNombreResiduo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardarResiduo))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -350,7 +390,7 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
             llenarTablaQuimicoResiduo();
             llenarTablaQuimicoDisponible();
         } else {
-            JOptionPane.showMessageDialog(this, "Seleccione un quimico", "Información", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione un químico", "Información", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnAgregarRegistroResiduoActionPerformed
@@ -381,8 +421,10 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
     private javax.swing.JButton btnAgregarRegistroResiduo;
     private javax.swing.JButton btnEliminarRegistroResiduo;
     private javax.swing.JButton btnGuardarResiduo;
+    private javax.swing.JComboBox<String> cmbProductorRegRes;
     private javax.swing.JLabel lblCodigoResiduo;
     private javax.swing.JLabel lblNombreResiduo;
+    private javax.swing.JLabel lblProductorRegRes;
     private javax.swing.JLabel lblRegistroResiduos;
     private javax.swing.JScrollPane pnlTablaQuimicoDisponible;
     private javax.swing.JScrollPane pnlTablaQuimicoResiduo;

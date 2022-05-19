@@ -4,7 +4,6 @@ package daos;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Updates.set;
 import entidades.Transporte;
 import java.util.LinkedList;
 import java.util.List;
@@ -80,9 +79,6 @@ public class TransportesDAO extends DAOsBase<Transporte>{
             System.err.println("No se pudieron agregar los vehículos ");
             ex.printStackTrace();
             return false;
-
-
-
     }
     }
     

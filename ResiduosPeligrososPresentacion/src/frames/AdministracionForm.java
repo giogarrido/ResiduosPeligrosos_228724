@@ -502,6 +502,12 @@ public class AdministracionForm extends javax.swing.JFrame {
         lblTransportistaRegVh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTransportistaRegVh.setText("Transportista:");
 
+        cmbTransportistaRegVh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTransportistaRegVhActionPerformed(evt);
+            }
+        });
+
         lblTipoVehiculoRegVh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTipoVehiculoRegVh.setText("Tipo de Vehículo:");
 
@@ -552,7 +558,7 @@ public class AdministracionForm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSalirRegVh))))
                     .addComponent(lblRegistroVehiculos))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         pnlRegVehiculoLayout.setVerticalGroup(
             pnlRegVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -691,6 +697,10 @@ public class AdministracionForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAgregarRegTransportistaActionPerformed
 
+    private void cmbTransportistaRegVhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTransportistaRegVhActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTransportistaRegVhActionPerformed
+
     private void regresar() {
         CardLayout cl = (CardLayout) (this.getContentPane().getLayout());
         cl.show(this.getContentPane(), "registro");
@@ -820,8 +830,9 @@ public class AdministracionForm extends javax.swing.JFrame {
     private void agregarVehiculoTransportista() {
         String tipoVehiculo = this.txtTipoVehiculoRegVh.getText().toUpperCase();
         String placas = this.txtPlacasRegVh.getText().toUpperCase();
+        String transporteVh = cmbTransportistaRegVh.getSelectedItem().toString();
 
-        if (!campoVacio(tipoVehiculo) && !campoVacio(placas)) {
+        if (!campoVacio(tipoVehiculo) && !campoVacio(placas)&& !cajaSinSeleccion(transporteVh)) {
 
             if (negocio.consultarExistePlacaVehiculo(placas)) {
                 JOptionPane.showMessageDialog(this, "Las placas ya existen", "error", JOptionPane.ERROR_MESSAGE);
@@ -829,7 +840,7 @@ public class AdministracionForm extends javax.swing.JFrame {
                 Vehiculo vehiculo = new Vehiculo(tipoVehiculo, placas);
                 boolean seAgrego = negocio.agregarVehiculo(vehiculo);
                 if (seAgrego) {
-                    String transporteVh = cmbTransportistaRegVh.getSelectedItem().toString();
+                    
                     ObjectId IdVh = negocio.obtenerIDVehiculo(placas);
                     boolean seAgregoVh = negocio.agregarIdsVehiculo(transporteVh, IdVh);
                     if (seAgregoVh) {
@@ -855,10 +866,20 @@ public class AdministracionForm extends javax.swing.JFrame {
         }
         return false;
     }
+    
+    private boolean cajaSinSeleccion(String caja){
+        if(caja.equals("Seleccione...")){
+            return true;
+        }
+        return false;
+    }
 
     private void llenarCajaTrasnportistasRegVeh() {
-
+        cmbTransportistaRegVh.removeAll();
         listaTrasportistas = negocio.consultarTodosTrasnportes();
+        
+        cmbTransportistaRegVh.addItem("Seleccione...");
+        
 
         for (int i = 0; i < listaTrasportistas.size(); i++) {
             cmbTransportistaRegVh.addItem(listaTrasportistas.get(i).getNombre());

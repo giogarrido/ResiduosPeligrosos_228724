@@ -8,6 +8,7 @@ import entidades.Residuo;
 import java.util.LinkedList;
 import java.util.List;
 import entidades.Quimico;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -87,6 +88,16 @@ public class ResiduosDAO extends DAOsBase<Residuo>{
         List<Quimico> listaQuimicos = new LinkedList<>();
         //coleccion.find().
         return existe;
+    }
+    
+    protected ObjectId obtenerIDResiduo(String nombre){
+        Residuo residuo;
+
+        MongoCollection<Residuo> coleccion = this.getColeccion();
+        residuo = coleccion.find(eq("nombre", nombre)).first();
+        ObjectId idResiduo = residuo.getId();
+        
+        return idResiduo;
     }
             
     

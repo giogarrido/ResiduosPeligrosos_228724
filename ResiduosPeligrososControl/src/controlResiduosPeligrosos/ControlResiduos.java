@@ -8,6 +8,7 @@ import daos.FabricaD;
 import daos.IDatos;
 import java.util.List;
 import entidades.Residuo;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -33,5 +34,10 @@ public class ControlResiduos {
      //CONSULTAR SI EXISTE NOMBRE RESIDUO
      public boolean consultarExisteNombreResiduo(String nombreConsultar){
          return this.datos.consultarExisteNombreResiduo(nombreConsultar);
+     }
+     
+     //OBTERNER ID RESIDUO
+     public ObjectId obtenerIDResiduo(String nombre){
+         return this.datos.obtenerIDResiduo(nombre);
      }
 }
