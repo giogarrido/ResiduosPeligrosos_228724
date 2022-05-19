@@ -22,6 +22,7 @@ public class FNegocios implements INegocio{
     private ControlAdministradores controlAdministradores;
     private ControlVehiculos controlVehiculos;
     private ControlTransportes controlTransportes;
+    private ControlSolicitudTraslado controlSolicitudTraslado;
 
     public FNegocios() {
     }
@@ -78,6 +79,15 @@ public class FNegocios implements INegocio{
         }else{
             this.controlTransportes = new ControlTransportes();
             return this.controlTransportes;
+        }
+    }
+    
+    private ControlSolicitudTraslado getControlSolicitudTraslado(){
+        if (this.controlSolicitudTraslado!= null){
+            return controlSolicitudTraslado;
+        }else{
+            this.controlSolicitudTraslado = new ControlSolicitudTraslado();
+            return this.controlSolicitudTraslado;
         }
     }
 
@@ -225,6 +235,11 @@ public class FNegocios implements INegocio{
     @Override
     public ProductorDTO consultarResiduos(String nombre) {
         return this.getControlProductores().consultarResiduos(nombre);
+    }
+
+    @Override
+    public boolean agregarSolicitudTraslado(SolicitudTraslado solicitudTraslado) {
+        return this.getControlSolicitudTraslado().agregarSolicitudTraslado(solicitudTraslado);
     }
         
 

@@ -25,6 +25,7 @@ public interface IDatos {
     public boolean agregarAdministrador (Administrador administrador);
     public boolean agregarVehiculo (Vehiculo vehiculo);
     public boolean agregarTransporte (Transporte transporte);
+    public boolean agregarSolicitudTraslado (SolicitudTraslado solicitudTraslado);
     
     
     //BUSCAR TODOS

@@ -23,6 +23,7 @@ public class FDatos implements IDatos{
     private AdministradorDAO administradorDAO;
     private VehiculosDAO vehiculosDAO;
     private TransportesDAO transportesDAO;
+    private SolicitudTrasladoDAO solicitudTrasladoDAO;
     
     private QuimicosDAO getQuimicosDAO(){
         if(this.quimicosDAO!=null){
@@ -75,6 +76,15 @@ public class FDatos implements IDatos{
         }else{
             this.transportesDAO = new TransportesDAO();
             return this.transportesDAO;
+        }
+    }
+    
+    private SolicitudTrasladoDAO getSolicitudTraslado(){
+        if(this.solicitudTrasladoDAO!=null){
+            return solicitudTrasladoDAO;
+        }else{
+            this.solicitudTrasladoDAO = new SolicitudTrasladoDAO();
+            return this.solicitudTrasladoDAO;
         }
     }
 
@@ -206,6 +216,12 @@ public class FDatos implements IDatos{
     @Override
     public ProductorDTO consultarResiduos(String nombre) {
         return this.getProductoresDAO().consultarResiduos(nombre);
+    }
+
+    @Override
+    public boolean agregarSolicitudTraslado(SolicitudTraslado solicitudTraslado) {
+        return this.getSolicitudTraslado().agregar(solicitudTraslado);
+
     }
    
     

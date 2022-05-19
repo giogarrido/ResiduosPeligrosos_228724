@@ -9,10 +9,12 @@ import controlResiduosPeligrosos.INegocio;
 import dtos.ProductorDTO;
 import entidades.Productor;
 import entidades.Residuo;
+import entidades.SolicitudTraslado;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -63,15 +65,14 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
     private void llenarTablaResiduosDisponibles() {
 
         llenarListaResiduosRegistrados();
-        System.out.println("lista registrados "+listaResiduosRegistrados);
-       listaResiduosDisponibles = listaResiduosRegistrados;
+        //System.out.println("lista registrados "+listaResiduosRegistrados);
+        listaResiduosDisponibles = listaResiduosRegistrados;
         listaResiduosDisponibles.removeAll(listaResiduosTrasportar);
-        System.out.println("a transportar "+listaResiduosTrasportar);
-        System.out.println("registrados "+listaResiduosRegistrados);
-        System.out.println("disponibles antes "+listaResiduosDisponibles);
- 
-        System.out.println("igual dispo y regi"+listaResiduosDisponibles);
-        
+//        System.out.println("a transportar "+listaResiduosTrasportar);
+//        System.out.println("registrados "+listaResiduosRegistrados);
+//        System.out.println("disponibles antes "+listaResiduosDisponibles);
+// 
+//        System.out.println("igual dispo y regi"+listaResiduosDisponibles);
 
         DefaultTableModel modeloTabla2 = (DefaultTableModel) this.tblResiduosDisponibles.getModel();
         modeloTabla2.setRowCount(0);
@@ -123,6 +124,44 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
             listaResiduosRegistrados = productorDTO.getResiduos();
         }
 
+    }
+
+    private void solicitarTraslado() {
+        if (validarCamposLlenos()) {
+            String productor = cmbProductorSolicTras.getSelectedItem().toString();
+            String fecha = DtFecha.getDateFormatString();
+            Float cantidad = Float.valueOf(tblResiduosSeleccionados.getValueAt(tblResiduosSeleccionados.getSelectedRow(), 1).toString());
+            String unidad = tblResiduosSeleccionados.getValueAt(tblResiduosSeleccionados.getSelectedRow(), 2).toString();
+            //List<ObjectId> idsResiduos = listaResiduosTrasportar;
+
+            SolicitudTraslado solicitudTraslado = new SolicitudTraslado(productor, fecha, cantidad, unidad);
+            boolean seAgrego = (negocio.agregarSolicitudTraslado(solicitudTraslado));
+            if (seAgrego) {
+                JOptionPane.showMessageDialog(this, "Se registro la solicitud de traslado", "información", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Rellene todos los campos", "Información", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    private boolean validarCamposLlenos() {
+
+        if (cmbProductorSolicTras.getSelectedItem().toString().equals("Seleccione...")) {
+            return false;
+        }
+        if (DtFecha.getDateFormatString().isBlank()) {
+            return false;
+        }
+
+        if (tblResiduosSeleccionados.getValueAt(tblResiduosSeleccionados.getSelectedRow(), 1).toString().isEmpty()) {
+            return false;
+        }
+        if (tblResiduosSeleccionados.getValueAt(tblResiduosSeleccionados.getSelectedRow(), 2).toString().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -194,7 +233,7 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Float.class, java.lang.Byte.class
+                java.lang.Integer.class, java.lang.Float.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true, true
@@ -324,6 +363,9 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
 
     private void btnSolicitarSTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarSTActionPerformed
         // TODO add your handling code here:
+
+        solicitarTraslado();
+
     }//GEN-LAST:event_btnSolicitarSTActionPerformed
 
     private void cmbProductorSolicTrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductorSolicTrasActionPerformed
@@ -341,7 +383,7 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
             eliminarResiduoSolTrasnporte();
             llenarTablaResiduosSolTransporte();
             llenarTablaResiduosDisponibles();
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "La lista esta vacía", "Información", JOptionPane.ERROR_MESSAGE);
         }

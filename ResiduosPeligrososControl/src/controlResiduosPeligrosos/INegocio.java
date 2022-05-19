@@ -26,6 +26,7 @@ public interface INegocio {
     public boolean agregarAdministrador(Administrador administrador);
     public boolean agregarVehiculo(Vehiculo vehiculo);
     public boolean agregarTrasnporte (Transporte transporte);
+    public boolean agregarSolicitudTraslado (SolicitudTraslado solicitudTraslado);
     
     
     //Consultar todos
