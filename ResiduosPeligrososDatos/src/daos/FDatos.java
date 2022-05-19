@@ -4,6 +4,7 @@
  */
 package daos;
 
+import dtos.ProductorDTO;
 import entidades.Administrador;
 import entidades.Productor;
 import java.util.List;
@@ -200,6 +201,11 @@ public class FDatos implements IDatos{
     @Override
     public boolean agregarIdsResiduos(String nombre, ObjectId idResiduo) {
         return this.getProductoresDAO().agregarIdsResiduos(nombre, idResiduo);
+    }
+
+    @Override
+    public ProductorDTO consultarResiduos(String nombre) {
+        return this.getProductoresDAO().consultarResiduos(nombre);
     }
    
     

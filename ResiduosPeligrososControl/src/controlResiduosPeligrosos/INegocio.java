@@ -4,6 +4,7 @@
  */
 package controlResiduosPeligrosos;
 
+import dtos.ProductorDTO;
 import entidades.*;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -56,5 +57,8 @@ public interface INegocio {
      
      //AGREGAR ID RESIDUOS
      public boolean agregarIdsResiduos(String nombre, ObjectId idResiduo);
+     
+     //CONSULTAR REPARTIDORES DEL PRODUCTOR
+     public ProductorDTO consultarResiduos (String nombre);
 
 }

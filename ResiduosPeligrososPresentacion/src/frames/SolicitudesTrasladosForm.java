@@ -4,6 +4,16 @@
  */
 package frames;
 
+import controlResiduosPeligrosos.FabricaN;
+import controlResiduosPeligrosos.INegocio;
+import dtos.ProductorDTO;
+import entidades.Productor;
+import entidades.Residuo;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author giova
@@ -12,26 +22,109 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
 
     // Representa si el formulario ya fue cargado una vez.
     private boolean estaActivado;
-    
+    private INegocio negocio = FabricaN.fabricaN();
+    private List<Productor> listaProductores;
+    private List<Residuo> listaResiduosDisponibles;
+    private List<Residuo> listaResiduosRegistrados;
+    private List<Residuo> listaResiduosTrasportar;
+
     /**
      * Creates new form solicitudesTrasladosForm
      */
     public SolicitudesTrasladosForm() {
 
-        estaActivado=false;
+        estaActivado = false;
     }
-    
-    public void cargarContenido(){
+
+    public void cargarContenido() {
         initComponents();
-        
-        estaActivado= true;
+        iniciartablas();
+        llenarCajaProductoresST();
+
+        this.llenarTablaResiduosDisponibles();
+
+        estaActivado = true;
+
     }
-    
-    
-    public boolean estaActivado(){
+
+    public boolean estaActivado() {
         return estaActivado;
     }
-    
+
+    private void llenarCajaProductoresST() {
+        listaProductores = negocio.consultarTodosProductores();
+        cmbProductorSolicTras.addItem("Seleccione...");
+
+        for (int i = 0; i < listaProductores.size(); i++) {
+            cmbProductorSolicTras.addItem(listaProductores.get(i).getNombre());
+        }
+    }// end llenar caja productores
+
+    private void llenarTablaResiduosDisponibles() {
+
+        llenarListaResiduosRegistrados();
+        System.out.println("lista registrados "+listaResiduosRegistrados);
+       listaResiduosDisponibles = listaResiduosRegistrados;
+        listaResiduosDisponibles.removeAll(listaResiduosTrasportar);
+        System.out.println("a transportar "+listaResiduosTrasportar);
+        System.out.println("registrados "+listaResiduosRegistrados);
+        System.out.println("disponibles antes "+listaResiduosDisponibles);
+ 
+        System.out.println("igual dispo y regi"+listaResiduosDisponibles);
+        
+
+        DefaultTableModel modeloTabla2 = (DefaultTableModel) this.tblResiduosDisponibles.getModel();
+        modeloTabla2.setRowCount(0);
+        listaResiduosDisponibles.forEach(residuosProductor -> {
+            Object[] fila = new Object[1];
+            fila[0] = residuosProductor.getNombre();
+            modeloTabla2.addRow(fila);
+        });
+
+    }
+
+    private void agregarResiduoSolTrasporte() {
+        listaResiduosTrasportar.add(new Residuo((String) tblResiduosDisponibles.getValueAt(tblResiduosDisponibles.getSelectedRow(), 0)));
+    }
+
+    private void eliminarResiduoSolTrasnporte() {
+
+        if (tblResiduosSeleccionados.getSelectedRow() >= 0) {
+            listaResiduosTrasportar.remove(new Residuo((String) tblResiduosSeleccionados.getValueAt(tblResiduosSeleccionados.getSelectedRow(), 0)));
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un residuo", "Información", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void llenarTablaResiduosSolTransporte() {
+        DefaultTableModel modeloTabla = (DefaultTableModel) this.tblResiduosSeleccionados.getModel();
+        modeloTabla.setRowCount(0);
+        listaResiduosTrasportar.forEach(residuosSolTrasnportar -> {
+            Object[] fila = new Object[1];
+            fila[0] = residuosSolTrasnportar.getNombre();
+            modeloTabla.addRow(fila);
+        });
+    }
+
+    private void iniciartablas() {
+        listaResiduosDisponibles = new ArrayList<>();
+        listaResiduosRegistrados = new ArrayList<>();
+        listaResiduosTrasportar = new ArrayList<>();
+    }
+
+    private void llenarListaResiduosRegistrados() {
+        String nombreP = cmbProductorSolicTras.getSelectedItem().toString();
+        if (nombreP.equals("Seleccione...")) {
+            //iniciartablas();
+            llenarTablaResiduosSolTransporte();
+
+        } else {
+            ProductorDTO productorDTO = negocio.consultarResiduos(nombreP);
+            listaResiduosRegistrados = productorDTO.getResiduos();
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +136,6 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
 
         lblSolicitudTraslados = new javax.swing.JLabel();
         lblProductor = new javax.swing.JLabel();
-        txtProductorST = new javax.swing.JTextField();
         lblResiduosST = new javax.swing.JLabel();
         pnlTablaResiduosDisponibles = new javax.swing.JScrollPane();
         tblResiduosDisponibles = new javax.swing.JTable();
@@ -53,24 +145,17 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
         btnEliminarST = new javax.swing.JButton();
         btnSolicitarST = new javax.swing.JButton();
         lblFechaST = new javax.swing.JLabel();
-        datePickerFechaST = new com.github.lgooddatepicker.components.DatePicker();
+        cmbProductorSolicTras = new javax.swing.JComboBox<>();
+        DtFecha = new com.toedter.calendar.JDateChooser();
 
-        lblSolicitudTraslados.setText("Solicitud de Traslados");
         lblSolicitudTraslados.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblSolicitudTraslados.setText("Solicitud de Traslados");
 
-        lblProductor.setText("Productor: ");
         lblProductor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblProductor.setText("Productor: ");
 
-        txtProductorST.setEditable(false);
-        txtProductorST.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtProductorST.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductorSTActionPerformed(evt);
-            }
-        });
-
-        lblResiduosST.setText("RESIDUOS");
         lblResiduosST.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblResiduosST.setText("RESIDUOS");
 
         tblResiduosDisponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,27 +210,40 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
         });
         pnlTablaResiduosSeleccionados.setViewportView(tblResiduosSeleccionados);
 
-        btnElegirST.setText("Elegir");
         btnElegirST.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnElegirST.setText("Elegir");
         btnElegirST.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnElegirSTActionPerformed(evt);
             }
         });
 
-        btnEliminarST.setText("Eliminar");
         btnEliminarST.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEliminarST.setText("Eliminar");
+        btnEliminarST.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarSTActionPerformed(evt);
+            }
+        });
 
-        btnSolicitarST.setText("Solicitar");
         btnSolicitarST.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSolicitarST.setText("Solicitar");
         btnSolicitarST.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSolicitarSTActionPerformed(evt);
             }
         });
 
-        lblFechaST.setText("Fecha:");
         lblFechaST.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFechaST.setText("Fecha:");
+
+        cmbProductorSolicTras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProductorSolicTrasActionPerformed(evt);
+            }
+        });
+
+        DtFecha.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -174,29 +272,27 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pnlTablaResiduosSeleccionados, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(datePickerFechaST, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtProductorST))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(DtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                                    .addComponent(cmbProductorSolicTras, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblResiduosST)
+                                .addGap(243, 243, 243)))))
                 .addContainerGap(110, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblResiduosST)
-                .addGap(353, 353, 353))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lblSolicitudTraslados)
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblProductor)
-                    .addComponent(txtProductorST, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblProductor)
+                    .addComponent(cmbProductorSolicTras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblFechaST)
-                    .addComponent(datePickerFechaST, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lblResiduosST)
                 .addGap(18, 18, 18)
@@ -207,31 +303,58 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
                         .addComponent(btnEliminarST)
                         .addGap(41, 41, 41)
                         .addComponent(btnSolicitarST))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(pnlTablaResiduosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(pnlTablaResiduosSeleccionados, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(129, Short.MAX_VALUE))
+                    .addComponent(pnlTablaResiduosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlTablaResiduosSeleccionados, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtProductorSTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductorSTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProductorSTActionPerformed
-
     private void btnElegirSTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElegirSTActionPerformed
-        // TODO add your handling code here:
+
+        if (tblResiduosDisponibles.getSelectedRow() >= 0) {
+            agregarResiduoSolTrasporte();
+            llenarTablaResiduosSolTransporte();
+            llenarTablaResiduosDisponibles();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un residuo", "Información", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_btnElegirSTActionPerformed
 
     private void btnSolicitarSTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarSTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSolicitarSTActionPerformed
 
+    private void cmbProductorSolicTrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductorSolicTrasActionPerformed
+
+        iniciartablas();
+        llenarTablaResiduosSolTransporte();
+        llenarTablaResiduosDisponibles();
+
+
+    }//GEN-LAST:event_cmbProductorSolicTrasActionPerformed
+
+    private void btnEliminarSTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSTActionPerformed
+
+        if (!listaResiduosTrasportar.isEmpty()) {
+            eliminarResiduoSolTrasnporte();
+            llenarTablaResiduosSolTransporte();
+            llenarTablaResiduosDisponibles();
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "La lista esta vacía", "Información", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnEliminarSTActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser DtFecha;
     private javax.swing.JButton btnElegirST;
     private javax.swing.JButton btnEliminarST;
     private javax.swing.JButton btnSolicitarST;
-    private com.github.lgooddatepicker.components.DatePicker datePickerFechaST;
+    private javax.swing.JComboBox<String> cmbProductorSolicTras;
     private javax.swing.JLabel lblFechaST;
     private javax.swing.JLabel lblProductor;
     private javax.swing.JLabel lblResiduosST;
@@ -240,6 +363,5 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
     private javax.swing.JScrollPane pnlTablaResiduosSeleccionados;
     private javax.swing.JTable tblResiduosDisponibles;
     private javax.swing.JTable tblResiduosSeleccionados;
-    private javax.swing.JTextField txtProductorST;
     // End of variables declaration//GEN-END:variables
 }

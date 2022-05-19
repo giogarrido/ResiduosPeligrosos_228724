@@ -4,6 +4,7 @@
  */
 package controlResiduosPeligrosos;
 
+import dtos.ProductorDTO;
 import entidades.*;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -220,6 +221,12 @@ public class FNegocios implements INegocio{
     
         return this.getControlProductores().agregarIdsResiduos(nombre, idResiduo);
     }
+
+    @Override
+    public ProductorDTO consultarResiduos(String nombre) {
+        return this.getControlProductores().consultarResiduos(nombre);
+    }
+        
 
 
         

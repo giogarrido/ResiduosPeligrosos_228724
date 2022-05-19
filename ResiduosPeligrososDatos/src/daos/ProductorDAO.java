@@ -7,7 +7,9 @@ package daos;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
+import dtos.ProductorDTO;
 import entidades.Productor;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import org.bson.Document;
@@ -84,7 +86,32 @@ public class ProductorDAO extends DAOsBase<Productor>{
             ex.printStackTrace();
             return false;
     }
+    }//end agregar idResiduos
+    
+    protected ProductorDTO consultarResiduos (String nombre){
+        MongoCollection<ProductorDTO> coleccion = this.baseDatos.getCollection("productores", ProductorDTO.class);
+        List<ProductorDTO> listaProductores = new LinkedList<>();
+        List<Document> etapas = new ArrayList<>();
+        
+        etapas.add(new Document(
+                "$match",new Document()
+                .append("nombre", nombre)));
+        
+        etapas.add(new Document(
+                "$lookup", new Document()
+                .append("from", "residuos")
+                .append("localField", "idsResiduos")
+                .append("foreignField", "_id")
+                .append("as", "residuos")
+        ));
+        
+        coleccion.aggregate(etapas).into(listaProductores);
+        return listaProductores.get(0);
+        
+        
+        
     }
+    
     
     
 }

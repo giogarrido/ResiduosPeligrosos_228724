@@ -4,6 +4,7 @@
  */
 package daos;
 
+import dtos.ProductorDTO;
 import entidades.Productor;
 import java.util.List;
 import entidades.*;
@@ -54,6 +55,9 @@ public interface IDatos {
      
      //AGREGAR RESIDUOS A PRODUCTOR
      public boolean agregarIdsResiduos(String nombre, ObjectId idResiduo);
+     
+     //CONSULTAR RESIDUOS DEL PRODUCTOR
+     public ProductorDTO consultarResiduos (String nombre);
 
 
 }

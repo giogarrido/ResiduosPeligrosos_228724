@@ -3,6 +3,7 @@ package controlResiduosPeligrosos;
 
 import daos.FabricaD;
 import daos.IDatos;
+import dtos.ProductorDTO;
 import entidades.Productor;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -28,6 +29,10 @@ public class ControlProductores {
     
     public boolean  agregarIdsResiduos(String nombre, ObjectId idResiduo){
         return this.datos.agregarIdsResiduos(nombre, idResiduo);
+    }
+    
+    public ProductorDTO consultarResiduos (String nombre){
+        return this.datos.consultarResiduos(nombre);
     }
     
     

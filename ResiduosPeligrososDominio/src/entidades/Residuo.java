@@ -20,6 +20,10 @@ public class Residuo {
     public Residuo() {
     }
 
+    public Residuo(String nombre) {
+        this.nombre = nombre;
+    }
+
     public Residuo(int codigo, String nombre, List<Quimico> quimicos) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -89,7 +93,9 @@ public class Residuo {
 
     @Override
     public String toString() {
-        return "Residuo{" + "id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", quimicos=" + quimicos + '}';
+        //return "Residuo{" + "id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", quimicos=" + quimicos + '}';
+   
+        return nombre;
     }
 
     

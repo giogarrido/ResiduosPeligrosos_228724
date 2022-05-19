@@ -78,10 +78,12 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
 
     private void eliminarQuimicoResiduo() {
 
-        if (!listaQuimicosResiduo.isEmpty()) {
+        //if (!listaQuimicosResiduo.isEmpty()) {
+        if (tblQuimicoResiduo.getSelectedRow() >= 0) {
             listaQuimicosResiduo.remove(new Quimico((String) tblQuimicoResiduo.getValueAt(tblQuimicoResiduo.getSelectedRow(), 0)));
         } else {
-            JOptionPane.showMessageDialog(this, "La lista esta vacia", "Información", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(this, "La lista esta vacia", "Información", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione un químico", "Información", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -109,7 +111,6 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
     }
 
     private void llenarCajaProductores() {
-        
 
         listaProductores = negocio.consultarTodosProductores();
 
@@ -185,7 +186,7 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
         if (listaQuimicosResiduo.isEmpty()) {
             return false;
         }
-        if (cmbProductorRegRes.getSelectedItem().toString().equals("Seleccione...")){
+        if (cmbProductorRegRes.getSelectedItem().toString().equals("Seleccione...")) {
             return false;
         }
         return true;
@@ -314,6 +315,12 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
 
         lblProductorRegRes.setText("Productor: ");
 
+        cmbProductorRegRes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProductorRegResActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -404,10 +411,15 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCodigoResiduoActionPerformed
 
     private void btnEliminarRegistroResiduoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarRegistroResiduoActionPerformed
-        // TODO add your handling code here:
-        eliminarQuimicoResiduo();
-        llenarTablaQuimicoResiduo();
-        llenarTablaQuimicoDisponible();
+
+        if (!listaQuimicosResiduo.isEmpty()) {
+            eliminarQuimicoResiduo();
+            llenarTablaQuimicoResiduo();
+            llenarTablaQuimicoDisponible();
+        } else {
+            JOptionPane.showMessageDialog(this, "La lista esta vacía", "Información", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnEliminarRegistroResiduoActionPerformed
 
     private void btnGuardarResiduoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarResiduoActionPerformed
@@ -415,6 +427,10 @@ public class RegistroResiduoForm extends javax.swing.JPanel {
         guardarResiduo();
 
     }//GEN-LAST:event_btnGuardarResiduoActionPerformed
+
+    private void cmbProductorRegResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductorRegResActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProductorRegResActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
