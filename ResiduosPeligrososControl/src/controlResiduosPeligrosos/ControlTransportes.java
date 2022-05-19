@@ -8,6 +8,7 @@ import daos.FabricaD;
 import daos.IDatos;
 import entidades.Transporte;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -27,5 +28,9 @@ public class ControlTransportes {
     
     public boolean consultarExisteNombreTransporte(String nombreConsultar){
         return this.datos.consultarExisteNombreTransporte(nombreConsultar);
+    }
+    
+    public boolean agregarIdsVehiculo(String nombre, ObjectId idVehiculo){
+        return this.datos.agregarIdsVehiculo(nombre, idVehiculo);
     }
 }

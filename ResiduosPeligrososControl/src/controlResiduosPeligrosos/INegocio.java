@@ -6,6 +6,7 @@ package controlResiduosPeligrosos;
 
 import entidades.*;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 
 /**
@@ -45,5 +46,9 @@ public interface INegocio {
     
      //CONCULTAR SI EXISTE CLAVE RESIDUO
      public boolean consultarExisteClave(Integer claveConsultar);
+     public ObjectId obtenerIDVehiculo(String placa);
+     
+     //AGREGAR ID VEHICULOS
+     public boolean agregarIdsVehiculo(String nombre, ObjectId idVehiculo);
 
 }

@@ -12,6 +12,7 @@ import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -682,10 +683,12 @@ public class AdministracionForm extends javax.swing.JFrame {
 
     private void btnGuardarRegVhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRegVhActionPerformed
 
+        agregarVehiculoTransportista();
     }//GEN-LAST:event_btnGuardarRegVhActionPerformed
 
     private void btnAgregarRegTransportistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarRegTransportistaActionPerformed
         agregarTrasnporte();
+
     }//GEN-LAST:event_btnAgregarRegTransportistaActionPerformed
 
     private void regresar() {
@@ -701,6 +704,21 @@ public class AdministracionForm extends javax.swing.JFrame {
     private void limpiarProductor() {
         txtNombreRegProductor.setText("");
         txtContraseniaRegProductor.setText("");
+    }
+    
+    private void limpiarAdministrador(){
+        txtNombreRegAdministrador.setText("");
+        txtContraseniaRegAdministrador.setText("");
+    }
+    
+    private void limpiarTransporte(){
+        txtNombreRegTransportista.setText("");
+        txtContraseniaRegTransportista.setText("");
+    }
+    
+    private void limpiarVehiculo(){
+        txtPlacasRegVh.setText("");
+        txtTipoVehiculoRegVh.setText("");
     }
 
     private void agregarQuimico() {
@@ -762,7 +780,7 @@ public class AdministracionForm extends javax.swing.JFrame {
                 boolean seAgrego = negocio.agregarAdministrador(administrador);
                 if (seAgrego) {
                     JOptionPane.showMessageDialog(this, "Se registro el administrador", "información", JOptionPane.INFORMATION_MESSAGE);
-                    this.limpiarProductor();
+                    this.limpiarAdministrador();
                 } else {
                     JOptionPane.showMessageDialog(this, "No fue posible registrar al administrador", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -787,7 +805,7 @@ public class AdministracionForm extends javax.swing.JFrame {
                 boolean seAgrego = negocio.agregarTrasnporte(transporte);
                 if (seAgrego) {
                     JOptionPane.showMessageDialog(this, "Se registro el Trasnportista", "información", JOptionPane.INFORMATION_MESSAGE);
-                    this.limpiarProductor();
+                    this.limpiarTransporte();
                 } else {
                     JOptionPane.showMessageDialog(this, "No fue posible registrar al transportista", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -799,9 +817,9 @@ public class AdministracionForm extends javax.swing.JFrame {
 
     }//end agregarTransporte
 
-    private void agregarVehiculo() {
+    private void agregarVehiculoTransportista() {
         String tipoVehiculo = this.txtTipoVehiculoRegVh.getText().toUpperCase();
-        String placas = this.txtPlacasRegVh.getText();
+        String placas = this.txtPlacasRegVh.getText().toUpperCase();
 
         if (!campoVacio(tipoVehiculo) && !campoVacio(placas)) {
 
@@ -811,11 +829,17 @@ public class AdministracionForm extends javax.swing.JFrame {
                 Vehiculo vehiculo = new Vehiculo(tipoVehiculo, placas);
                 boolean seAgrego = negocio.agregarVehiculo(vehiculo);
                 if (seAgrego) {
-                    JOptionPane.showMessageDialog(this, "Se registro el Vehículo", "información", JOptionPane.INFORMATION_MESSAGE);
-                    this.limpiarProductor();
-                } else {
-                    JOptionPane.showMessageDialog(this, "No fue posible registrar el vehículo", "Error", JOptionPane.ERROR_MESSAGE);
+                    String transporteVh = cmbTransportistaRegVh.getSelectedItem().toString();
+                    ObjectId IdVh = negocio.obtenerIDVehiculo(placas);
+                    boolean seAgregoVh = negocio.agregarIdsVehiculo(transporteVh, IdVh);
+                    if (seAgregoVh) {
+                        JOptionPane.showMessageDialog(this, "Se registro el Vehículo y agrego al Trasnportista", "información", JOptionPane.INFORMATION_MESSAGE);
+                        this.limpiarVehiculo();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No fue posible registrar el vehículo", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
+
             }
 
         } else {
@@ -833,32 +857,19 @@ public class AdministracionForm extends javax.swing.JFrame {
     }
 
     private void llenarCajaTrasnportistasRegVeh() {
-        
+
         listaTrasportistas = negocio.consultarTodosTrasnportes();
-        
-        for(int i =0; i < listaTrasportistas.size(); i++){
+
+        for (int i = 0; i < listaTrasportistas.size(); i++) {
             cmbTransportistaRegVh.addItem(listaTrasportistas.get(i).getNombre());
         }
-/*
-        ArrayList<Transporte> listaTransporte = (ArrayList<Transporte>) negocio.consultarTodosTrasnportes();
-        cmbTransportistaRegVh.removeAll();
 
-        for (int i = 0; i < listaTransporte.size(); i++) {
-            cmbTransportistaRegVh.addItem(listaTransporte.get(i).getNombre());
-        }
-*/
     }
 
-    /*
-    public void llenarCajaIdLugares() {
-        ArrayList<String> listaLugares = new ArrayList<>();
-        listaLugares = this.eventosDAO.consultarIdLugares();
 
-        for (int i = 0; i < listaLugares.size(); i++) {
-            cmbIdLugar.addItem(listaLugares.get(i));
-        }
-    }
-     */
+
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProductor;

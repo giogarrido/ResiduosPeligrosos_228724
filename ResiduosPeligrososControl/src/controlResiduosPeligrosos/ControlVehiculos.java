@@ -8,6 +8,7 @@ import daos.FabricaD;
 import daos.IDatos;
 import entidades.Vehiculo;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -27,4 +28,9 @@ public class ControlVehiculos {
     public boolean consultarExistePlacaVehiculo(String placasConsultar){
         return this.datos.consultarExistePlacaVehiculo(placasConsultar);
     }
+    
+    public ObjectId obtenerIDVehiculo(String placa){
+        return this.datos.obtenerIDVehiculo(placa);
+    }
+    
 }

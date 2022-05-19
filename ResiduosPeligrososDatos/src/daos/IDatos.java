@@ -7,6 +7,7 @@ package daos;
 import entidades.Productor;
 import java.util.List;
 import entidades.*;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -43,6 +44,12 @@ public interface IDatos {
      
 //CONCULTAR SI EXISTE CLAVE RESIDUO
      public boolean consultarExisteClaveResiduo(Integer clave);
+     
+     //Consultar IDvehiuculo
+     public ObjectId obtenerIDVehiculo(String placa);
+     
+     //AGREGAR VEHICULO A TRANSPORTISTA
+     public boolean agregarIdsVehiculo(String nombre, ObjectId idVehiculo);
 
 
 }

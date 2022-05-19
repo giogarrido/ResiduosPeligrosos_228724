@@ -6,6 +6,7 @@ package controlResiduosPeligrosos;
 
 import entidades.*;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 
 /**
@@ -195,6 +196,20 @@ public class FNegocios implements INegocio{
     public boolean consultarExisteNombretrasnporte(String nombreConsultar) {
         return this.getControlTransportes().consultarExisteNombreTransporte(nombreConsultar);
     }
+
+    @Override
+    public ObjectId obtenerIDVehiculo(String placa) {
+        return this.getControlVehiculos().obtenerIDVehiculo(placa);
+
+    }
+
+    @Override
+    public boolean agregarIdsVehiculo(String nombre, ObjectId idVehiculo) {
+        return this.getControlTransportes().agregarIdsVehiculo(nombre, idVehiculo);
+
+    }
+
+
         
     
 }

@@ -8,6 +8,7 @@ import static com.mongodb.client.model.Updates.set;
 import entidades.Transporte;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 /**
@@ -33,7 +34,7 @@ public class TransportesDAO extends DAOsBase<Transporte>{
             coleccion.insertOne(transporte);
             return true;
         } catch (IllegalStateException ex) {
-            System.err.println("No se pudeo agregar el transporte");
+            System.err.println("No se pudo agregar el transporte");
             ex.printStackTrace();
             return false;
         }}
@@ -65,13 +66,24 @@ public class TransportesDAO extends DAOsBase<Transporte>{
         return existe;
     }
     
-//    protected boolean agregarIdsVehiculo(String nombre, ObjectId idVehiculo){
-//        MongoCollection<Transporte> coleccion = this.getColeccion();
-//        coleccion.updateOne(
-//                eq("nombre",nombre),
-//                combine(set"idsVehiculos",)
-//        
-//          );
-//    }
+    protected boolean agregarIdsVehiculo(String nombre, ObjectId idVehiculo){
+        Transporte transporte;
+        
+        MongoCollection<Transporte> coleccion = this.getColeccion();
+        try{
+        transporte = coleccion.find(eq("nombre", nombre)).first();
+        transporte.addIdsVehiculos(idVehiculo);
+        coleccion.updateOne(eq("nombre",nombre),new Document("$set",new Document("idsVehiculos",transporte.getIdsVehiculos())));
+
+        return true;
+        } catch (IllegalStateException ex) {
+            System.err.println("No se pudieron agregar los vehículos ");
+            ex.printStackTrace();
+            return false;
+
+
+
+    }
+    }
     
 }

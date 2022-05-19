@@ -10,6 +10,7 @@ import static com.mongodb.client.model.Filters.eq;
 import entidades.Vehiculo;
 import java.util.LinkedList;
 import java.util.List;
+import org.bson.types.ObjectId;
 /**
  *
  * @author giova
@@ -17,6 +18,7 @@ import java.util.List;
 public class VehiculosDAO extends DAOsBase<Vehiculo>{
     
     private MongoDatabase baseDatos;
+
 
     public VehiculosDAO() {
 
@@ -70,6 +72,16 @@ public class VehiculosDAO extends DAOsBase<Vehiculo>{
         }
         return existe;
 
+    }
+    
+    protected ObjectId obtenerIDVehiculo(String placa){
+        Vehiculo vehiculo;
+
+        MongoCollection<Vehiculo> coleccion = this.getColeccion();
+        vehiculo = coleccion.find(eq("placas", placa)).first();
+        ObjectId idVehiculo = vehiculo.getId();
+        
+        return idVehiculo;
     }
     
 }

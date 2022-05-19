@@ -8,6 +8,7 @@ import entidades.Administrador;
 import entidades.Productor;
 import java.util.List;
 import entidades.*;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -176,6 +177,18 @@ public class FDatos implements IDatos{
     @Override
     public boolean consultarExisteNombreTransporte(String nombreConsultar) {
         return this.getTransportesDAO().consultarExisteNombre(nombreConsultar);
+
+    }
+
+    @Override
+    public ObjectId obtenerIDVehiculo(String placa) {
+        return this.getVehiculoDAO().obtenerIDVehiculo(placa);
+
+    }
+
+    @Override
+    public boolean agregarIdsVehiculo(String nombre, ObjectId idVehiculo) {
+        return this.getTransportesDAO().agregarIdsVehiculo(nombre, idVehiculo);
 
     }
    
