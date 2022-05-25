@@ -43,10 +43,10 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="pnlTablaResiduosSeleccionados" min="-2" pref="292" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="DtFecha" pref="174" max="32767" attributes="0"/>
-                                  <Component id="cmbProductorSolicTras" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cmbProductorSolicTras" max="32767" attributes="0"/>
+                                  <Component id="DtFecha" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="lblResiduosST" min="-2" max="-2" attributes="0"/>
@@ -70,9 +70,9 @@
                   <Component id="cmbProductorSolicTras" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblFechaST" min="-2" max="-2" attributes="0"/>
-                  <Component id="DtFecha" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblFechaST" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="DtFecha" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="lblResiduosST" min="-2" max="-2" attributes="0"/>
@@ -126,7 +126,7 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="1" rowCount="0">
-                <Column editable="false" title="Residuo Disponible" type="java.lang.String"/>
+                <Column editable="false" title="Residuo Disponible" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -168,7 +168,7 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="3" rowCount="0">
-                <Column editable="false" title="Residuo" type="java.lang.Integer"/>
+                <Column editable="false" title="Residuo" type="java.lang.Object"/>
                 <Column editable="true" title="Cantidad" type="java.lang.Float"/>
                 <Column editable="true" title="Medida" type="java.lang.String"/>
               </Table>
@@ -253,10 +253,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="DtFecha">
-      <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-      </Properties>
+    <Component class="com.github.lgooddatepicker.components.DatePicker" name="DtFecha">
     </Component>
   </SubComponents>
 </Form>

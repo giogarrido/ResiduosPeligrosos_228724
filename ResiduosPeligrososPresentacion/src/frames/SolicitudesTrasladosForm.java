@@ -11,6 +11,8 @@ import entidades.Productor;
 import entidades.Residuo;
 import entidades.SolicitudTraslado;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -42,6 +44,7 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
         initComponents();
         iniciartablas();
         llenarCajaProductoresST();
+        DtFecha.setDateToToday();
 
         this.llenarTablaResiduosDisponibles();
 
@@ -65,33 +68,27 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
     private void llenarTablaResiduosDisponibles() {
 
         llenarListaResiduosRegistrados();
-        //System.out.println("lista registrados "+listaResiduosRegistrados);
         listaResiduosDisponibles = listaResiduosRegistrados;
-        listaResiduosDisponibles.removeAll(listaResiduosTrasportar);
-//        System.out.println("a transportar "+listaResiduosTrasportar);
-//        System.out.println("registrados "+listaResiduosRegistrados);
-//        System.out.println("disponibles antes "+listaResiduosDisponibles);
-// 
-//        System.out.println("igual dispo y regi"+listaResiduosDisponibles);
 
         DefaultTableModel modeloTabla2 = (DefaultTableModel) this.tblResiduosDisponibles.getModel();
         modeloTabla2.setRowCount(0);
         listaResiduosDisponibles.forEach(residuosProductor -> {
             Object[] fila = new Object[1];
-            fila[0] = residuosProductor.getNombre();
+            fila[0] = residuosProductor;
             modeloTabla2.addRow(fila);
         });
 
     }
 
     private void agregarResiduoSolTrasporte() {
-        listaResiduosTrasportar.add(new Residuo((String) tblResiduosDisponibles.getValueAt(tblResiduosDisponibles.getSelectedRow(), 0)));
+
+        listaResiduosTrasportar.add((Residuo) tblResiduosDisponibles.getValueAt(tblResiduosDisponibles.getSelectedRow(), 0));
     }
 
     private void eliminarResiduoSolTrasnporte() {
 
         if (tblResiduosSeleccionados.getSelectedRow() >= 0) {
-            listaResiduosTrasportar.remove(new Residuo((String) tblResiduosSeleccionados.getValueAt(tblResiduosSeleccionados.getSelectedRow(), 0)));
+            listaResiduosTrasportar.remove(((Residuo) tblResiduosSeleccionados.getValueAt(tblResiduosSeleccionados.getSelectedRow(), 0)));
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione un residuo", "Información", JOptionPane.ERROR_MESSAGE);
         }
@@ -102,7 +99,7 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
         modeloTabla.setRowCount(0);
         listaResiduosTrasportar.forEach(residuosSolTrasnportar -> {
             Object[] fila = new Object[1];
-            fila[0] = residuosSolTrasnportar.getNombre();
+            fila[0] = residuosSolTrasnportar;
             modeloTabla.addRow(fila);
         });
     }
@@ -117,11 +114,12 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
         String nombreP = cmbProductorSolicTras.getSelectedItem().toString();
         if (nombreP.equals("Seleccione...")) {
             //iniciartablas();
-            llenarTablaResiduosSolTransporte();
+            //llenarTablaResiduosSolTransporte();
 
         } else {
             ProductorDTO productorDTO = negocio.consultarResiduos(nombreP);
             listaResiduosRegistrados = productorDTO.getResiduos();
+
         }
 
     }
@@ -129,10 +127,10 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
     private void solicitarTraslado() {
         if (validarCamposLlenos()) {
             String productor = cmbProductorSolicTras.getSelectedItem().toString();
-            String fecha = DtFecha.getDateFormatString();
+            String fecha = DtFecha.getDateStringOrEmptyString();
             Float cantidad = Float.valueOf(tblResiduosSeleccionados.getValueAt(tblResiduosSeleccionados.getSelectedRow(), 1).toString());
             String unidad = tblResiduosSeleccionados.getValueAt(tblResiduosSeleccionados.getSelectedRow(), 2).toString();
-            //List<ObjectId> idsResiduos = listaResiduosTrasportar;
+            //List<ObjectId> idsResiduos = listaResiduosTrasportar.ge;
 
             SolicitudTraslado solicitudTraslado = new SolicitudTraslado(productor, fecha, cantidad, unidad);
             boolean seAgrego = (negocio.agregarSolicitudTraslado(solicitudTraslado));
@@ -146,14 +144,19 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
 
     }
 
+    private void limpiarCampos() {
+        cmbProductorSolicTras.setSelectedIndex(0);
+
+        DtFecha.setDateToToday();
+
+    }
+
     private boolean validarCamposLlenos() {
 
         if (cmbProductorSolicTras.getSelectedItem().toString().equals("Seleccione...")) {
             return false;
         }
-        if (DtFecha.getDateFormatString().isBlank()) {
-            return false;
-        }
+
 
         if (tblResiduosSeleccionados.getValueAt(tblResiduosSeleccionados.getSelectedRow(), 1).toString().isEmpty()) {
             return false;
@@ -185,7 +188,7 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
         btnSolicitarST = new javax.swing.JButton();
         lblFechaST = new javax.swing.JLabel();
         cmbProductorSolicTras = new javax.swing.JComboBox<>();
-        DtFecha = new com.toedter.calendar.JDateChooser();
+        DtFecha = new com.github.lgooddatepicker.components.DatePicker();
 
         lblSolicitudTraslados.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblSolicitudTraslados.setText("Solicitud de Traslados");
@@ -204,16 +207,9 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
                 "Residuo Disponible"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class
-            };
             boolean[] canEdit = new boolean [] {
                 false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -233,7 +229,7 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Float.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Float.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true, true
@@ -282,8 +278,6 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
             }
         });
 
-        DtFecha.setDateFormatString("yyyy-MM-dd");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -312,8 +306,8 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
                                 .addComponent(pnlTablaResiduosSeleccionados, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(DtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                                    .addComponent(cmbProductorSolicTras, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(cmbProductorSolicTras, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(DtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblResiduosST)
                                 .addGap(243, 243, 243)))))
@@ -329,7 +323,7 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
                     .addComponent(lblProductor)
                     .addComponent(cmbProductorSolicTras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFechaST)
                     .addComponent(DtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -365,6 +359,7 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         solicitarTraslado();
+        limpiarCampos();
 
     }//GEN-LAST:event_btnSolicitarSTActionPerformed
 
@@ -392,7 +387,7 @@ public class SolicitudesTrasladosForm extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DtFecha;
+    private com.github.lgooddatepicker.components.DatePicker DtFecha;
     private javax.swing.JButton btnElegirST;
     private javax.swing.JButton btnEliminarST;
     private javax.swing.JButton btnSolicitarST;
